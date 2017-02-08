@@ -6,7 +6,7 @@
 
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link ml-auto" href="https://github.com/vuejs/vue/issues/new" target="_blank">Create Issue</a>
+            <a class="nav-link ml-auto" :class="{ disabled: !content }" :href="'https://github.com/vuejs/vue/issues/new?title='+title+'&body='+body" target="_blank">Create Issue</a>
           </li>
         </ul>
       </div>
@@ -16,12 +16,16 @@
       <form class="row" @submit.prevent="generate">
         <div class="col-12 col-lg-8 offset-lg-2">
           <div class="row">
+            <div class="col-12">
+              <input-text v-model="attrs.title" title="Issue Title" required autofocus />
+            </div>
+
             <div class="col-12 col-lg-4">
               <input-select v-model="attrs.version" title="Version" :options="versions" required />
             </div>
 
             <div class="col-12 col-lg-8">
-              <input-text type="url" v-model="attrs.reproduction" title="Reproduction Link" required autofocus />
+              <input-text type="url" v-model="attrs.reproduction" title="Reproduction Link" required />
             </div>
 
             <div class="col-12">
@@ -85,6 +89,7 @@ export default {
 
   data: () => ({
     attrs: {
+      title: '',
       version: '2.0.2',
       reproduction: '',
       steps: '',
@@ -105,6 +110,14 @@ export default {
 
     contentHtml () {
       return marked(this.content)
+    },
+
+    title () {
+      return encodeURIComponent(this.attrs.title).replace(/%2B/gi, '+')
+    },
+
+    body () {
+      return encodeURIComponent(this.content).replace(/%2B/gi, '+')
     }
   },
 
