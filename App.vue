@@ -44,7 +44,7 @@
             </div>
 
             <div class="col-12 my-3 py-3 text-center">
-              <input-button type="submit">Generate & Copy</input-button>
+              <input-button type="submit" :class="{ disabled: message }">{{ message || 'Generate & Copy' }}</input-button>
             </div>
           </div>
         </div>
@@ -93,7 +93,8 @@ export default {
     },
     content: '',
     show: false,
-    preview: false
+    preview: false,
+    message: ''
   }),
 
   computed: {
@@ -127,7 +128,14 @@ ${this.attrs.expected}
 ${this.attrs.actual}
       `.trim()
 
-      copy(this.content)
+      try {
+        copy(this.content)
+        this.message = 'Copied!'
+      } catch (e) {}
+
+      setTimeout(() => {
+        this.message = ''
+      }, 4000)
 
       if (this.preview) {
         this.show = true
