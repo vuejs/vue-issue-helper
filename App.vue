@@ -1,12 +1,12 @@
 <template lang="html">
-  <div class="app">
-    <nav class="navbar navbar-light bg-faded mb-3">
+  <div class="app" style="padding-top: 54px">
+    <nav class="navbar navbar-light fixed-top bg-faded mb-3">
       <div class="container d-flex">
         <a class="navbar-brand" href="#">Vue Issue Helper</a>
 
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link ml-auto" href="https://github.com/vuejs/vue">Github</a>
+            <a class="nav-link ml-auto" href="https://github.com/vuejs/vue/issues/new" target="_blank">Create Issue</a>
           </li>
         </ul>
       </div>
@@ -57,6 +57,11 @@
         </div>
       </modal>
     </div>
+
+    <footer class="text-center text-muted mb-3">
+      <p>&hellip;</p>
+      <small>Built with <a href="https://github.com/vuejs/vue-cli">vue-cli</a> &centerdot; Checkout source on <a href="https://github.com/znck/vue-issue">Github</a></small>
+    </footer>
   </div>
 </template>
 
