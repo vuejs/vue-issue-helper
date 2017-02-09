@@ -5,9 +5,12 @@
       <a class="navbar-brand" href="#">
         <img src="./logo.png" height="24"> Issue Helper</a>
 
-      <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav ml-auto d-flex flex-row">
         <li class="nav-item">
-          <a class="nav-link ml-auto" href="https://github.com/vuejs/vue/issues" target="_blank">Github</a>
+          <input-select class="d-inline-block mb-0" v-model="repo" :options="repos" />
+        </li>
+        <li class="nav-item px-2">
+          <a class="nav-link ml-auto" :href="`https://github.com/${repo}/issues`" target="_blank">Github</a>
         </li>
       </ul>
     </div>
@@ -97,6 +100,8 @@ import { formHelper } from 'bootstrap-for-vue'
 import copy from 'copy-to-clipboard'
 import marked from 'marked'
 
+import repos from './repos'
+
 function versionCompare(v1, v2, options) {
   const lexicographical = options && options.lexicographical
   const zeroExtend = options && options.zeroExtend
@@ -160,7 +165,7 @@ export default {
   data: () => ({
     attrs: {
       title: '',
-      version: '2.1.10',
+      version: '',
       reproduction: '',
       steps: '',
       expected: '',
@@ -169,15 +174,25 @@ export default {
     content: '',
     show: false,
     preview: false,
-    versions: []
+    repo: 'vuejs/vue',
+    versions: {
+      'vuejs/vue': []
+    }
   }),
 
   computed: {
     suggestions () {
-      return this.versions.slice()
+      const repo = this.repo
+      const versions = this.versions
+
+      if (!(repo in versions)) return []
+
+      return versions[repo].slice()
           .sort((a, b) => -versionCompare(a.id, b.id))
           .map((a, index) => ({ index, ...a }))
     },
+
+    repos: () => (repos),
 
     contentHtml () {
       return marked(this.content)
@@ -196,7 +211,7 @@ export default {
     generate () {
       this.content =
           `
-## Vue.js Verion
+## Version
 ${this.attrs.version}
 
 ## Reproduction Link
@@ -217,28 +232,47 @@ ${this.attrs.actual}
       if (this.preview) {
         this.show = true
       } else {
-        window.open(`https://github.com/vuejs/vue/issues/new?title=${this.title}&body=${this.body}`)
+        window.open(`https://github.com/${this.repo}/issues/new?title=${this.title}&body=${this.body}`)
       }
     },
+
     async fetchVersions (page = 1) {
-      const response = await this.$http.get('https://api.github.com/repos/vuejs/vue/releases', { params: { page, per_page: 100 } })
+      const response = await this.$http.get(`https://api.github.com/repos/${this.repo}/releases`, { params: { page, per_page: 100 } })
       const versions = await response.json()
 
-      this.versions.push(
+      if (!versions || !(versions instanceof Array)) return false
+
+      if (! (this.repo in this.versions)) {
+        this.$set(this.versions, this.repo, [])
+      }
+
+      this.versions[this.repo].push(
           ...versions.map(v => (/^v/.test(v.tag_name) ? v.tag_name.substr(1) : v.tag_name))
               .map(name => ({ id: name, name}))
       )
 
+      if (page === 1) {
+        this.attrs.version = this.versions[this.repo].length ? this.versions[this.repo][0].id : ''
+      }
+
       const link = response.headers.get('Link')
 
-      if (link.indexOf('rel="next"') > -1) {
+      if (link && link.indexOf('rel="next"') > -1) {
         this.fetchVersions(page + 1)
       }
     }
   },
 
   created () {
-    setTimeout(() => this.fetchVersions(), 0)
+    this.fetchVersions()
+  },
+
+  watch: {
+    repo (repo) {
+      if (!this.versions[repo]) {
+        this.fetchVersions()
+      }
+    }
   },
 
   mixins: [formHelper]
