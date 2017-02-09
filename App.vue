@@ -21,11 +21,11 @@
               <div slot="subtitle">
                 <p>The issue list of this repo is <strong>exclusively</strong> for bug reports and feature requests. For simple questions, please use the following resources:</p>
                 <ul>
-                  <li>Read the docs: <a href="https://vuejs.org/guide/">https://vuejs.org/guide/</a></li>
-                  <li>Watch video tutorials: <a href="https://laracasts.com/series/learning-vue-step-by-step">https://laracasts.com/series/learning-vue-step-by-step</a></li>
-                  <li>Ask in the Gitter chat room: <a href="https://gitter.im/vuejs/vue">https://gitter.im/vuejs/vue</a></li>
-                  <li>Ask on the forums: <a href="http://forum.vuejs.org/">http://forum.vuejs.org/</a></li>
-                  <li>Look for/ask questions on stack overflow: <a href="https://stackoverflow.com/questions/ask?tags=vue.js">https://stackoverflow.com/questions/ask?tags=vue.js</a></li>
+                  <li>Read the docs: <a target="_blank" href="https://vuejs.org/guide/">https://vuejs.org/guide/</a></li>
+                  <li>Watch video tutorials: <a target="_blank" href="https://laracasts.com/series/learning-vue-step-by-step">https://laracasts.com/series/learning-vue-step-by-step</a></li>
+                  <li>Ask in the Gitter chat room: <a target="_blank" href="https://gitter.im/vuejs/vue">https://gitter.im/vuejs/vue</a></li>
+                  <li>Ask on the forums: <a target="_blank" href="http://forum.vuejs.org/">http://forum.vuejs.org/</a></li>
+                  <li>Look for/ask questions on stack overflow: <a target="_blank" href="https://stackoverflow.com/questions/ask?tags=vue.js">https://stackoverflow.com/questions/ask?tags=vue.js</a></li>
                 </ul>
                 <p><strong>Try to search for your issue, it may have already been answered or even fixed in the development branch.</strong></p>
               </div>
@@ -34,14 +34,14 @@
 
           <div class="col-12 col-lg-4">
             <input-typeahead v-model="attrs.version" title="Version" :suggestions="suggestions"
-                             :search="{ sort: [{ field: 'index', direction: 'asc' }], empty_sort: [{ field: 'index', direction: 'asc' }] }" required
+                             :search="{ sort: [{ field: 'index', direction: 'asc' }], empty_sort: [{ field: 'index', direction: 'asc' }], limit: 10 }" required
                              subtitle="Check if the issue is reproducible with the latest stable version of Vue." />
           </div>
 
           <div class="col-12 col-lg-8">
             <input-text type="url" v-model="attrs.reproduction" title="Reproduction Link" required subtitle="yes">
               <div slot="subtitle">
-                <p>It is recommended that you make a JSFiddle/JSBin/Codepen to demonstrate your issue. You could start with <a href="http://jsfiddle.net/5sH6A/">this template</a> that already includes the latest version of Vue.</p>
+                <p>It is recommended that you make a JSFiddle/JSBin/Codepen to demonstrate your issue. You could start with <a target="_blank" href="http://jsfiddle.net/5sH6A/">this template</a> that already includes the latest version of Vue.</p>
               </div>
             </input-text>
           </div>
@@ -64,8 +64,8 @@
 
           <div class="col-12 col-lg-6">
             <checkbox-wrapper title="Show preview?">
-              <input-box v-model="preview" title="Yes" :checkbox="true" inline/>
-              <input-box v-model="preview" title="No" :checkbox="false" inline/>
+              <input-box v-model="preview" title="Yes" :radio="true" inline/>
+              <input-box v-model="preview" title="No" :radio="false" inline/>
             </checkbox-wrapper>
           </div>
 
@@ -231,7 +231,6 @@ ${this.attrs.actual}
       const link = response.headers.get('Link')
 
       if (link.indexOf('rel="next"') > -1) {
-        console.log(link)
         this.fetchVersions(page + 1)
       }
     }
