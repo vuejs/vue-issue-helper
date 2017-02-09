@@ -4,5 +4,9 @@ Checkout [http://vue-issue.surge.sh](http://vue-issue.surge.sh)
 
 ## Build
 ```
-$ vue -d dist main.js
+# Run local server
+$ vue build --config config.js --open
+
+# Production
+$ vue build --dist dist --config config.js --prod
 ```
