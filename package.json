@@ -13,5 +13,10 @@
     "marked": "^0.3.6",
     "vue": "^2.1.10",
     "vue-resource": "^1.2.0"
+  },
+  "scripts": {
+    "deploy": "surge --domain vue-issue.surge.sh --project ./dist",
+    "prod": "vue build --config config.js main.js --prod --dist dist",
+    "hot": "vue build --config config.js main.js --open"
   }
 }
