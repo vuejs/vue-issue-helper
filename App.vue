@@ -45,7 +45,7 @@
           <div class="col-12 col-lg-8">
             <input-text type="url" v-model="attrs.reproduction" title="Reproduction Link" required subtitle="yes">
               <div slot="subtitle">
-                <p>It is recommended that you make a JSFiddle/JSBin/Codepen to demonstrate your issue. You could start with <a tabindex="-1" target="_blank" href="http://jsfiddle.net/5sH6A/">this template</a> that already includes the latest version of Vue.</p>
+                <p>It is recommended that you make a JSFiddle/JSBin/Codepen to demonstrate your issue. You could start with <a tabindex="-1" target="_blank" href="https://jsfiddle.net/z11fe07p/">this template</a> that already includes the latest version of Vue.</p>
               </div>
             </input-text>
           </div>
@@ -147,6 +147,18 @@ function versionCompare(v1, v2, options) {
   }
 
   return 0
+}
+
+function getParameterByName(name, url) {
+  if (!url) {
+    url = window.location.href;
+  }
+  name = name.replace(/[\[\]]/g, "\\$&");
+  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+      results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
 marked.setOptions({
@@ -264,7 +276,7 @@ ${this.attrs.actual}
   },
 
   created () {
-    this.fetchVersions()
+    this.repo = getParameterByName('repo') || 'vuejs/vue'
   },
 
   watch: {
