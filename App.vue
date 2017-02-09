@@ -2,11 +2,12 @@
 <div class="app" style="padding-top: 54px">
   <nav class="navbar navbar-light fixed-top bg-faded mb-3">
     <div class="container d-flex">
-      <a class="navbar-brand" href="#">Vue Issue Helper</a>
+      <a class="navbar-brand" href="#">
+        <img src="./logo.png" height="24"> Issue Helper</a>
 
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link ml-auto" href="https://github.com/vuejs/vue" target="_blank">Github</a>
+          <a class="nav-link ml-auto" href="https://github.com/vuejs/vue/issues" target="_blank">Github</a>
         </li>
       </ul>
     </div>
@@ -21,11 +22,11 @@
               <div slot="subtitle">
                 <p>The issue list of this repo is <strong>exclusively</strong> for bug reports and feature requests. For simple questions, please use the following resources:</p>
                 <ul>
-                  <li>Read the docs: <a target="_blank" href="https://vuejs.org/guide/">https://vuejs.org/guide/</a></li>
-                  <li>Watch video tutorials: <a target="_blank" href="https://laracasts.com/series/learning-vue-step-by-step">https://laracasts.com/series/learning-vue-step-by-step</a></li>
-                  <li>Ask in the Gitter chat room: <a target="_blank" href="https://gitter.im/vuejs/vue">https://gitter.im/vuejs/vue</a></li>
-                  <li>Ask on the forums: <a target="_blank" href="http://forum.vuejs.org/">http://forum.vuejs.org/</a></li>
-                  <li>Look for/ask questions on stack overflow: <a target="_blank" href="https://stackoverflow.com/questions/ask?tags=vue.js">https://stackoverflow.com/questions/ask?tags=vue.js</a></li>
+                  <li>Read the docs: <a tabindex="-1" target="_blank" href="https://vuejs.org/guide/">https://vuejs.org/guide/</a></li>
+                  <li>Watch video tutorials: <a tabindex="-1" target="_blank" href="https://laracasts.com/series/learning-vue-step-by-step">https://laracasts.com/series/learning-vue-step-by-step</a></li>
+                  <li>Ask in the Gitter chat room: <a tabindex="-1" target="_blank" href="https://gitter.im/vuejs/vue">https://gitter.im/vuejs/vue</a></li>
+                  <li>Ask on the forums: <a tabindex="-1" target="_blank" href="http://forum.vuejs.org/">http://forum.vuejs.org/</a></li>
+                  <li>Look for/ask questions on stack overflow: <a tabindex="-1" target="_blank" href="https://stackoverflow.com/questions/ask?tags=vue.js">https://stackoverflow.com/questions/ask?tags=vue.js</a></li>
                 </ul>
                 <p><strong>Try to search for your issue, it may have already been answered or even fixed in the development branch.</strong></p>
               </div>
@@ -41,7 +42,7 @@
           <div class="col-12 col-lg-8">
             <input-text type="url" v-model="attrs.reproduction" title="Reproduction Link" required subtitle="yes">
               <div slot="subtitle">
-                <p>It is recommended that you make a JSFiddle/JSBin/Codepen to demonstrate your issue. You could start with <a target="_blank" href="http://jsfiddle.net/5sH6A/">this template</a> that already includes the latest version of Vue.</p>
+                <p>It is recommended that you make a JSFiddle/JSBin/Codepen to demonstrate your issue. You could start with <a tabindex="-1" target="_blank" href="http://jsfiddle.net/5sH6A/">this template</a> that already includes the latest version of Vue.</p>
               </div>
             </input-text>
           </div>
@@ -78,8 +79,8 @@
 
     <modal :open="show" @close="show = false" wrapper="bootstrap-for-vue-CustomModal-wrapper-default">
       <div class="card">
-        <h5 class="card-header preview">Issue Preview</h5>
-        <div class="card-block" style="overflow: auto" v-html="contentHtml"></div>
+        <h5 class="card-header">Issue Preview</h5>
+        <div class="card-block preview" style="overflow: auto" v-html="contentHtml"></div>
       </div>
     </modal>
   </div>
@@ -244,10 +245,27 @@ ${this.attrs.actual}
 }
 </script>
 
-<style src="./node_modules/bootstrap/dist/css/bootstrap.min.css" />
-<style src="./node_modules/bootstrap-for-vue/dist/bootstrap-for-vue.min.css" />
-<style lang="css">
-.preview h1, .preview h2 {
-  font-size: 18px;
+<style lang="scss">
+$brand-primary: #4fc08d;
+
+@import './node_modules/bootstrap/scss/variables';
+@import './node_modules/bootstrap/scss/bootstrap';
+@import './node_modules/bootstrap-for-vue/dist/scss/bootstrap-for-vue';
+
+.preview {
+  h1, h2 {
+    font-size: 18px !important;
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .navbar {
+    padding-left: 0;
+    padding-right: 0;
+
+    > .container {
+      width: 100%;
+    }
+  }
 }
 </style>
