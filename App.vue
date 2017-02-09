@@ -186,10 +186,8 @@ export default {
     content: '',
     show: false,
     preview: false,
-    repo: 'vuejs/vue',
-    versions: {
-      'vuejs/vue': []
-    }
+    repo: '',
+    versions: {}
   }),
 
   computed: {
