@@ -14,13 +14,14 @@ bindings@1.2.x:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/bindings/-/bindings-1.2.1.tgz#14ad6113812d2d37d72e67b4cacb4bb726505f11"
 
-bootstrap-for-vue@^0.1.9:
-  version "0.1.9"
-  resolved "https://registry.yarnpkg.com/bootstrap-for-vue/-/bootstrap-for-vue-0.1.9.tgz#7252dcbf9cee9eacda66e3dc27b41b219345043f"
+bootstrap-for-vue@^0.1.12:
+  version "0.1.12"
+  resolved "https://registry.yarnpkg.com/bootstrap-for-vue/-/bootstrap-for-vue-0.1.12.tgz#20f0592d79c32c22e80ce58d22e96374ca83724b"
   dependencies:
     lodash.debounce "^4.0.8"
     lodash.throttle "^4.1.1"
     sifter "^0.5.2"
+    vue-clickaway "^2.1.0"
 
 bootstrap@^4.0.0-alpha.6:
   version "4.0.0-alpha.6"
@@ -104,6 +105,10 @@ jquery@>=1.9.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.1.1.tgz#347c1c21c7e004115e0a4da32cece041fad3c8a3"
 
+js-tokens@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.1.tgz#08e9f132484a2c45a30907e9dc4d5567b7f114d7"
+
 lodash.debounce@^4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
@@ -111,6 +116,12 @@ lodash.debounce@^4.0.8:
 lodash.throttle@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/lodash.throttle/-/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
+
+loose-envify@^1.2.0:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.3.1.tgz#d1a8ad33fa9ce0e713d65fdd0ac8b748d478c848"
+  dependencies:
+    js-tokens "^3.0.0"
 
 lowercase-keys@^1.0.0:
   version "1.0.0"
@@ -190,11 +201,21 @@ url-parse-lax@^1.0.0:
   dependencies:
     prepend-http "^1.0.1"
 
+vue-clickaway@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/vue-clickaway/-/vue-clickaway-2.1.0.tgz#392de764751f31cd20787e8fb3a6e319825f8d4f"
+  dependencies:
+    loose-envify "^1.2.0"
+
 vue-resource@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/vue-resource/-/vue-resource-1.2.0.tgz#dc368cca958655c79486dde07336db22954af40c"
   dependencies:
     got "^6.7.1"
+
+vue@^2.1.10:
+  version "2.1.10"
+  resolved "https://registry.yarnpkg.com/vue/-/vue-2.1.10.tgz#c9235ca48c7925137be5807832ac4e3ac180427b"
 
 wordwrap@~0.0.2:
   version "0.0.3"
