@@ -118,67 +118,8 @@
 import { formHelper } from 'bootstrap-for-vue'
 import copy from 'copy-to-clipboard'
 import marked from 'marked'
-
 import repos from './repos'
-
-function versionCompare(v1, v2, options) {
-  const lexicographical = options && options.lexicographical
-  const zeroExtend = options && options.zeroExtend
-  let v1parts = v1.split('.')
-  let v2parts = v2.split('.')
-
-  function isValidPart(x) {
-    return (lexicographical ? /^\d+[A-Za-z]*$/ : /^\d+$/).test(x)
-  }
-
-  if (!v1parts.every(isValidPart) || !v2parts.every(isValidPart)) {
-    return NaN
-  }
-
-  if (zeroExtend) {
-    while (v1parts.length < v2parts.length) v1parts.push("0")
-    while (v2parts.length < v1parts.length) v2parts.push("0")
-  }
-
-  if (!lexicographical) {
-    v1parts = v1parts.map(Number)
-    v2parts = v2parts.map(Number)
-  }
-
-  for (let i = 0; i < v1parts.length; ++i) {
-    if (v2parts.length == i) {
-      return 1
-    }
-
-    if (v1parts[i] == v2parts[i]) {
-
-    }
-    else if (v1parts[i] > v2parts[i]) {
-      return 1
-    }
-    else {
-      return -1
-    }
-  }
-
-  if (v1parts.length != v2parts.length) {
-    return -1
-  }
-
-  return 0
-}
-
-function getParameterByName(name, url) {
-  if (!url) {
-    url = window.location.href;
-  }
-  name = name.replace(/[\[\]]/g, "\\$&");
-  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-      results = regex.exec(url);
-  if (!results) return null;
-  if (!results[2]) return '';
-  return decodeURIComponent(results[2].replace(/\+/g, " "));
-}
+import { versionCompare } from './version-compare'
 
 marked.setOptions({
   gfm: true,
@@ -263,10 +204,9 @@ ${this.attrs.actual}
       this.show = true
     },
 
-      create()
-      {
-        window.open(`https://github.com/${this.repo}/issues/new?title=${this.title}&body=${this.body}`)
-      },
+    create () {
+      window.open(`https://github.com/${this.repo}/issues/new?title=${this.title}&body=${this.body}`)
+    },
 
     async fetchVersions (page = 1) {
       const response = await this.$http.get(`https://api.github.com/repos/${this.repo}/releases`, {
@@ -313,6 +253,18 @@ ${this.attrs.actual}
   },
 
   mixins: [formHelper]
+}
+
+function getParameterByName(name, url) {
+  if (!url) {
+    url = window.location.href;
+  }
+  name = name.replace(/[\[\]]/g, "\\$&");
+  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+      results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 </script>
 
