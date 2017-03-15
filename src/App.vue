@@ -248,6 +248,8 @@ ${this.attrs.actual}
     repo (repo) {
       if (!this.versions[repo]) {
         this.fetchVersions()
+      } else {
+        this.attrs.version = this.versions[repo][0].id
       }
     }
   },
