@@ -34,13 +34,11 @@
         required
         subtitle="yes">
         <div slot="subtitle">
-          Concisely describe the steps needed to cause the bug to happen
-          in your reproduction. Markdown is supported. Clear and concise
-          reproduction steps are important for us to be able triage your
-          issue in a timely manner. Note that you can use
+          Clear and concise reproduction instructions are important for us to be
+          able triage your issue in a timely manner. Note that you can use
           <a href="https://guides.github.com/features/mastering-markdown/" target="_blank">
            Markdown
-          </a> to format your code blocks.
+          </a> to format lists and code.
         </div>
       </input-textarea>
     </div>
