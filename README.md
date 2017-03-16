@@ -4,9 +4,12 @@ Checkout [http://vue-issue.surge.sh](http://vue-issue.surge.sh)
 
 ## Build
 ```
-# Run local server
-$ vue build --config config.js --open
+# Install vue-cli if you haven't yet
+$ yarn global add vue-cli
 
-# Production
-$ vue build --dist dist --config config.js --prod
+# Run local server
+$ npm run dev
+
+# Deploy (requires credentials to push to this repo)
+$ npm run deploy
 ```
