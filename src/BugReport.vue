@@ -37,7 +37,10 @@
           Concisely describe the steps needed to cause the bug to happen
           in your reproduction. Markdown is supported. Clear and concise
           reproduction steps are important for us to be able triage your
-          issue in a timely manner.
+          issue in a timely manner. Note that you can use
+          <a href="https://guides.github.com/features/mastering-markdown/" target="_blank">
+           Markdown
+          </a> to format your code blocks.
         </div>
       </input-textarea>
     </div>
@@ -48,6 +51,12 @@
 
     <div class="col-12 col-lg-6">
       <input-textarea v-model="attrs.actual" title="What is actually happening?" required/>
+    </div>
+
+    <div class="col-12">
+      <input-textarea v-model="attrs.extra"
+        title="Any additional comments? (optional)"
+        subtitle="e.g. some background / context of how you ran into this bug" />
     </div>
 
     <modal :open="show" @close="show = false">
@@ -94,7 +103,8 @@ export default {
       reproduction: '',
       steps: '',
       expected: '',
-      actual: ''
+      actual: '',
+      extra: ''
     },
     versions: {}
   }),
@@ -145,23 +155,25 @@ export default {
     },
 
     generate () {
-      const { version, reproduction, steps, expected, actual } = this.attrs
+      const { version, reproduction, steps, expected, actual, extra } = this.attrs
 
       return generate(`
-### Version
+### version
 ${version}
 
-### Reproduction Link
+### reproduction link
 [${reproduction}](${reproduction})
 
-### Steps to Reproduce
+### steps to reproduce
 ${steps}
 
-### What is expected?
+### what is expected?
 ${expected}
 
-### What is actually happening?
+### what is actually happening?
 ${actual}
+
+${extra ? `---\n${extra}` : ''}
   `.trim())
     }
   },

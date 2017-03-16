@@ -126,6 +126,11 @@ $brand-primary: #4fc08d;
   h1, h2, h3 {
     font-size: 18px !important;
   }
+  pre {
+    padding: 15px 20px;
+    background-color: #f3f3f3;
+    border-radius: 4px;
+  }
 }
 
 .app {

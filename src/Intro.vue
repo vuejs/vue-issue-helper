@@ -3,7 +3,7 @@
     <h2>Before You Start...</h2>
     <p>The issue list is reserved exclusively for bug reports
       and feature requests. If you open an issue that does not conform to the
-      requirements, <strong>it will be closed automatically</strong>.
+      requirements, <strong>it will be closed immediately</strong>.
       <a href="#" @click="show = true">Why are we so strict about this?</a></p>
     <p>For simple questions, please use the following resources:</p>
     <ul>
