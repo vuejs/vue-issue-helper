@@ -37,7 +37,7 @@
           <a href="https://nolanlawson.com/2017/03/05/what-it-feels-like-to-be-an-open-source-maintainer/" target="_blank">hard work</a>. As Vue's user base has grown, we are getting more and more usage questions, bug reports, feature requests and pull requests every single day.</p>
           <p>As a free and open source project, Vue also has limited maintainer bandwidth. That means the only way to ensure the project's sustainability is to:</p>
           <ol>
-            <li>Prioritize more concrete work (bug fixes and new feautres);</li>
+            <li>Prioritize more concrete work (bug fixes and new features);</li>
             <li>Improve issue triaging efficiency.</li>
           </ol>
           <p>
