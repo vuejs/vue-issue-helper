@@ -1,6 +1,6 @@
 # Vue Issue Helper
 
-Checkout [http://vue-issue.surge.sh](http://vue-issue.surge.sh)
+This is deployed at [https://new-issue.vuejs.org](https://new-issue.vuejs.org).
 
 ## Build
 ```
