@@ -45,7 +45,7 @@
   <footer class="text-center text-muted mb-3">
     <p>&hellip;</p>
     <small>Built with <a href="https://github.com/vuejs/vue-cli">vue-cli</a> &centerdot; Checkout source on <a
-            href="https://github.com/znck/vue-issue">Github</a></small>
+            href="https://github.com/vuejs/vue-issue">Github</a></small>
   </footer>
 </div>
 </template>

@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "vue build --config config.js src/main.js --open",
     "build": "vue build --config config.js src/main.js --prod --dist dist; cp src/logo.png dist/logo.png",
-    "deploy": "surge --domain vue-issue.surge.sh --project ./dist"
+    "deploy": "npm run build && ./deploy.sh"
   },
   "dependencies": {
     "bootstrap": "^4.0.0-alpha.6",
