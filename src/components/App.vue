@@ -21,7 +21,7 @@
           </div>
 
           <!-- content component -->
-          <component :is="type" ref="content" :repo="repo" :title="title"/>
+          <component :is="type" ref="content" :repo="repo" />
 
           <div class="col-12 my-3 py-3 text-center">
             <input-button type="submit">Preview</input-button>
