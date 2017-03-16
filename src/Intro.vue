@@ -11,7 +11,7 @@
       </li>
       <li>Watch
         <a tabindex="-1" target="_blank"
-          href="https://laracasts.com/series/learning-vue-step-by-step">video tutorials</a>
+          href="https://laracasts.com/series/learn-vue-2-step-by-step">video tutorials</a>
       </li>
       <li>Ask in the <a tabindex="-1" target="_blank" href="https://gitter.im/vuejs/vue">Gitter chat room</a>
       </li>
