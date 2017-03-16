@@ -3,7 +3,8 @@
 This is deployed at [https://new-issue.vuejs.org](https://new-issue.vuejs.org).
 
 ## Build
-```
+
+``` bash
 # Install vue-cli if you haven't yet
 $ yarn global add vue-cli
 
