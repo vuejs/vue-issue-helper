@@ -62,16 +62,16 @@
     <modal :open="show" @close="show = false">
       <div class="card">
         <div class="card-header">
-          <h4>Minimal Reproduction</h4>
+          <h4>About Reproductions</h4>
         </div>
         <div class="card-block">
           <p>
             A bug reproduction is a piece of code that can run and demonstrate how a bug can happen.
           </p>
           <h5>A repro is required</h5>
-          <p>We cannot fix a bug without a reproduction, period. There are many things that can lead to a problem in a project, and we cannot magically infer things that you did not tell us. A reproduction is the only way that can reliably help us understand what is going on.</p>
+          <p>It's impossible to fix a bug from mere text descriptions - the real cause may very well be something that you forgot to even mention. A reproduction is the only way that can reliably help us understand what is going on, so please provide one.</p>
           <h5>A repro must be runnable</h5>
-          <p>Text, screenshots or videos are <strong>NOT</strong> reproductions! Text is almost always too vague to precisely describe a technical bug. Screenshots and videos only show that the bug exists, but do not provide enough information on why it happens. Only runnable code provides the most complete context and allows us to properly debug the scenario.</p>
+          <p>Screenshots or videos are <strong>NOT</strong> reproductions! They only show that the bug exists, but do not provide enough information on why it happens. Only runnable code provides the most complete context and allows us to properly debug the scenario. That said, in some cases videos/gifs can help explain interaction issues that are hard to describe in text.</p>
           <h5>A repro should be minimal</h5>
           <p>Some users would give us a link to a real project and hope we can help them figure out what is wrong. We generally do not accept such requests because:</p>
           <ul>
