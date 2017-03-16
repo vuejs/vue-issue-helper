@@ -43,7 +43,7 @@
           <p>
             For (1), we have decided to use the GitHub issue lists exclusively for work that has well-defined, actionable goals. Questions and open ended discussions should be posted to mediums that are better suited for them.
           </p>
-          <p>For (2), we have found that issues that do not provide proper information upfront usually results in terribly inefficient back-and-forth communication just to extract the basic information needed for actual traiging. This is exactly why we have created this app: to ensure every issue is created with the necessary information, and to save time on both sides.</p>
+          <p>For (2), we have found that issues that do not provide proper information upfront usually results in terribly inefficient back-and-forth communication just to extract the basic information needed for actual triaging. This is exactly why we have created this app: to ensure every issue is created with the necessary information, and to save time on both sides.</p>
         </div>
       </div>
     </modal>
