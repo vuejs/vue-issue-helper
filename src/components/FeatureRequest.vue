@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { generate } from '../helpers/generate'
+import { generate } from '../helpers'
 
 export default {
   data: () => ({
