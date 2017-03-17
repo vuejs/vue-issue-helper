@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueResource from 'vue-resource'
 import BootstrapForVue from 'bootstrap-for-vue'
 
-import App from './App.vue'
+import App from './components/App.vue'
 
 window.jQuery = window.$ = require('jquery')
 window.Tether = require('tether')
