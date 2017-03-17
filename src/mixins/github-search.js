@@ -5,7 +5,17 @@ function toArray(any) {
 }
 
 export default {
-  data: () => ({ issues: [] }),
+  data: () => ({ _issues: [], showingAllIssues: false }),
+
+  computed: {
+    issues () {
+      const issues = this.$data._issues
+      const all = this.showingAllIssues
+
+      return all ? issues : issues.slice(0, 5)
+    }
+  }
+  ,
 
   methods: {
     async fetchIssues(term, filters) {
@@ -17,7 +27,7 @@ export default {
         const response = await this.$http.get(API_ENDPOINT, { params: { q } })
         const { items } = await response.json()
 
-        this.issues = items || []
+        this.$data._issues = items || []
       } catch (e) {
         // ignore
       }

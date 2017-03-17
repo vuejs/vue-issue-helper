@@ -23,12 +23,15 @@
                 Similar issues:
 
                 <ul>
-                  <li v-for="issue in issues.slice(0, 5)" :key="issue.id">
+                  <li v-for="issue in issues" :key="issue.id">
                     <a class="issue" :href="issue.url" target="_blank" rel="noreferrer" tabindex="-1">
                       {{ issue.title }}
                     </a>
                   </li>
                 </ul>
+
+                <span role="button" @click="showingAllIssues = true" v-if="!showingAllIssues">show more</span>
+                <span role="button" @click="showingAllIssues = false" v-else>show less</span>
               </div>
               </template>
             </input-text>
