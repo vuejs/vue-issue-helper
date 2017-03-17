@@ -29,7 +29,7 @@
     <modal :open="show" @close="show = false">
       <div class="card">
         <div class="card-header">
-          <h4>The reason behind our strict issue policy</h4>
+          <h4 class="mb-0">The reason behind our strict issue policy</h4>
         </div>
         <div class="card-block">
           <p>
