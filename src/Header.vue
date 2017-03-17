@@ -6,7 +6,7 @@
 
       <ul class="navbar-nav ml-auto d-flex flex-row">
         <li class="nav-item px-2">
-          <a class="nav-link ml-auto" :href="`https://github.com/${repo}/issues`" target="_blank">Github</a>
+          <a class="nav-link ml-auto" :href="`https://github.com/${repo}/issues`" target="_blank">GitHub</a>
         </li>
       </ul>
     </div>
