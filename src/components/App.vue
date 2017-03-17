@@ -51,7 +51,7 @@
 </template>
 
 <script lang="babel">
-import repos from './repos'
+import repos from '../config/repos'
 import { formHelper } from 'bootstrap-for-vue'
 
 import Intro from './Intro.vue'

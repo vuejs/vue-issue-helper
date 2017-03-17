@@ -88,8 +88,8 @@
 </template>
 
 <script>
-import { versionCompare } from './version-compare'
-import { generate } from './generate'
+import { versionCompare } from '../helpers/version-compare'
+import { generate } from '../helpers/generate'
 
 export default {
   props: ['repo'],
