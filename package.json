@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "vue build --config config.js src/main.js --open",
-    "build": "vue build --config config.js src/main.js --prod --dist dist; cp src/logo.png dist/logo.png",
+    "build": "rm -rf dist && vue build --config config.js src/main.js --prod --dist dist && cp src/assets/images/logo.png dist/logo.png",
     "deploy": "npm run build && ./deploy.sh"
   },
   "dependencies": {
