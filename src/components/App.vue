@@ -23,7 +23,7 @@
                 Similar issues:
 
                 <ul>
-                  <li v-for="issue in issues.slice(0, 3)" :key="issue.id">
+                  <li v-for="issue in issues.slice(0, 5)" :key="issue.id">
                     <a class="issue" :href="issue.url" target="_blank" rel="noreferrer" tabindex="-1">
                       {{ issue.title }}
                     </a>
