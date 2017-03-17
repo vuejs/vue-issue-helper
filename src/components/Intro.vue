@@ -1,10 +1,12 @@
 <template>
   <div class="col-12 intro bg-faded">
-    <render-copy id="intro" @click-policy="show = true"/>
+    <i18n id="intro" @click-policy="show = true"/>
     <modal :open="show" @close="show = false">
       <div class="card">
-        <render-copy class="card-header" id="policy-title"/>
-        <render-copy class="card-block" id="policy"/>
+        <div class="card-header">
+          <h4 class="mb-0">{{ i18n('policy-title') }}</h4>
+        </div>
+        <i18n class="card-block" id="policy"/>
       </div>
     </modal>
   </div>

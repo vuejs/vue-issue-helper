@@ -9,30 +9,54 @@
           <intro/>
 
           <div class="col-6">
-            <input-select title="I am opening an issue for" v-model="repo" :options="repos"/>
+            <input-select
+              v-model="repo"
+              title="I am opening an issue for"
+              :options="repos"/>
           </div>
 
           <div class="col-6">
-            <input-select title="This is a" v-model="type" :options="types"/>
+            <input-select
+              v-model="type"
+              title="This is a"
+              :options="types"/>
           </div>
 
           <div class="col-12">
-            <input-text v-model="title" title="Issue Title" @blur="findIssues" required autofocus subtitle="yes">
+            <input-text
+              v-model="title"
+              title="Issue Title"
+              @blur="findIssues"
+              required
+              autofocus
+              subtitle="yes">
               <template slot="subtitle">
-              <div class="similar-issues" v-if="issues.length">
-                Similar issues:
+                <div class="similar-issues" v-if="issues.length">
+                  Similar issues:
 
-                <ul>
-                  <li v-for="issue in issues" :key="issue.id">
-                    <a class="issue" :href="issue.url" target="_blank" rel="noreferrer" tabindex="-1">
-                      {{ issue.title }}
-                    </a>
-                  </li>
-                </ul>
+                  <ul>
+                    <li v-for="issue in issues" :key="issue.id">
+                      <a class="issue"
+                        :href="issue.url"
+                        target="_blank"
+                        rel="noreferrer"
+                        tabindex="-1">
+                        {{ issue.title }}
+                      </a>
+                    </li>
+                  </ul>
 
-                <span role="button" @click="showingAllIssues = true" v-if="!showingAllIssues">show more</span>
-                <span role="button" @click="showingAllIssues = false" v-else>show less</span>
-              </div>
+                  <span v-if="!showingAllIssues"
+                    role="button"
+                    @click="showingAllIssues = true">
+                    show more
+                  </span>
+                  <span v-else
+                    role="button"
+                    @click="showingAllIssues = false">
+                    show less
+                  </span>
+                </div>
               </template>
             </input-text>
           </div>
@@ -47,22 +71,33 @@
       </div>
     </form>
 
-    <modal :open="show" @close="show = false" wrapper="bootstrap-for-vue-CustomModal-wrapper-default">
+    <modal :open="show" @close="show = false">
       <div class="card">
         <div class="card-header d-flex align-items-center">
           <h5 class="mb-0">Issue Preview</h5>
-          <input-button class="btn btn-primary ml-auto" type="submit" @click.native.prevent="create">Create
+          <input-button
+            class="btn btn-primary ml-auto"
+            type="submit"
+            @click.native.prevent="create">
+            Create
           </input-button>
         </div>
-        <div class="card-block preview" style="overflow: auto" v-html="generated.html"></div>
+        <div class="card-block preview"
+          style="overflow: auto"
+          v-html="generated.html">
+        </div>
       </div>
     </modal>
   </div>
 
   <footer class="text-center text-muted mb-3">
     <p>&hellip;</p>
-    <small>Built with <a href="https://github.com/vuejs/vue-cli">vue-cli</a> &centerdot; Check out source on <a
-            href="https://github.com/vuejs/vue-issue">GitHub</a></small>
+    <small>
+      Built with
+      <a href="https://github.com/vuejs/vue-cli">vue-cli</a>
+      &centerdot;
+      Check out source on <a href="https://github.com/vuejs/vue-issue">GitHub</a>
+    </small>
   </footer>
 </div>
 </template>

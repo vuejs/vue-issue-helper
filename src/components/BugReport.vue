@@ -5,7 +5,11 @@
         v-model="attrs.version"
         title="Version"
         :suggestions="suggestions"
-        :search="{ sort: [{ field: 'index', direction: 'asc' }], empty_sort: [{ field: 'index', direction: 'asc' }], limit: 10 }"
+        :search="{
+          sort: [{ field: 'index', direction: 'asc' }],
+          empty_sort: [{ field: 'index', direction: 'asc' }],
+          limit: 10
+        }"
         required
         subtitle="Check if the issue is reproducible with the latest stable version of Vue."/>
     </div>
@@ -60,28 +64,9 @@
     <modal :open="show" @close="show = false">
       <div class="card">
         <div class="card-header">
-          <h4 class="mb-0">About Reproductions</h4>
+          <h4 class="mb-0">{{ i18n('repro-title') }}</h4>
         </div>
-        <div class="card-block">
-          <p>
-            A bug reproduction is a piece of code that can run and demonstrate how a bug can happen.
-          </p>
-          <h5>A repro is required</h5>
-          <p>It's impossible to fix a bug from mere text descriptions – the real cause may very well be something that you forgot to even mention. A reproduction is the only way that can reliably help us understand what is going on, so please provide one.</p>
-          <h5>A repro must be runnable</h5>
-          <p>Screenshots or videos are <strong>NOT</strong> reproductions! They only show that the bug exists, but do not provide enough information on why it happens. Only runnable code provides the most complete context and allows us to properly debug the scenario. That said, in some cases, videos/gifs can help explain interaction issues that are hard to describe in text.</p>
-          <h5>A repro should be minimal</h5>
-          <p>Some users would give us a link to a real project and hope we can help them figure out what is wrong. We generally do not accept such requests because:</p>
-          <ul>
-            <li>It is extremely time-consuming to hunt a bug in a big and unfamiliar codebase.</li>
-            <li>The problematic behavior may very well be caused by your code rather than by a bug in Vue.</li>
-          </ul>
-          <p>A <strong>minimal</strong> reproduction means it demonstrates the bug, and the bug only. It should only contain the bare minimum amount of code that can reliably cause the bug. Try your best to get rid of anything that isn't directly related to the problem.</p>
-          <h5>How to create a repro</h5>
-          <p>
-            You can use online coding environments like <a href="https://jsfiddle.net/chrisvfritz/50wL7mdz/" target="_blank">JSFiddle</a>, <a href="https://jsbin.com" target="_blank">JSBin</a> or <a href="https://codepen.io" target="_blank">CodePen</a> to create reproductions. If your bug involves a build setup, you can create a project using <a href="https://github.com/vuejs/vue-cli" target="_blank">vue-cli</a> and provide the link to a GitHub repository.
-          </p>
-        </div>
+        <i18n class="card-block" id="repro"/>
       </div>
     </modal>
   </div>
