@@ -5,17 +5,23 @@ function toArray(any) {
 }
 
 export default {
-  data: () => ({ _issues: [], showingAllIssues: false }),
+  data: () => ({
+    _issues: [],
+    showingAllIssues: false
+  }),
 
   computed: {
-    issues () {
-      const issues = this.$data._issues
-      const all = this.showingAllIssues
-
-      return all ? issues : issues.slice(0, 5)
+    issues: {
+      get () {
+        const issues = this.$data._issues
+        const all = this.showingAllIssues
+        return all ? issues : issues.slice(0, 5)
+      },
+      set (issues) {
+        this.$data._issues = issues
+      }
     }
-  }
-  ,
+  },
 
   methods: {
     async fetchIssues(term, filters) {
