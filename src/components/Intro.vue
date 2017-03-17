@@ -2,10 +2,11 @@
   <div class="col-12 intro bg-faded">
     <h2>Before You Start...</h2>
     <p>The issue list is reserved exclusively for bug reports
-      and feature requests. If you open an issue that does not conform to the
-      requirements, <strong>it will be closed immediately</strong>.
+      and feature requests. That means we do not accept usage questions.
+      If you open an issue that does not conform to the requirements,
+      <strong>it will be closed immediately</strong>.
       <a href="#" @click="show = true">Why are we so strict about this?</a></p>
-    <p>For simple questions, please use the following resources:</p>
+    <p>For usage questions, please use the following resources:</p>
     <ul>
       <li>Read the <a tabindex="-1" target="_blank" href="https://vuejs.org/guide/">docs</a>
       </li>
