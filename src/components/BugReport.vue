@@ -60,7 +60,7 @@
     <modal :open="show" @close="show = false">
       <div class="card">
         <div class="card-header">
-          <h4>About Reproductions</h4>
+          <h4 class="mb-0">About Reproductions</h4>
         </div>
         <div class="card-block">
           <p>
