@@ -17,6 +17,7 @@
     "copy-to-clipboard": "^3.0.5",
     "marked": "^0.3.6",
     "node-sass": "^4.5.0",
+    "raw-loader": "^0.5.1",
     "sass-loader": "^6.0.3",
     "vue": "^2.2.4",
     "vue-resource": "^1.2.0"
