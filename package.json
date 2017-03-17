@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "bootstrap": "^4.0.0-alpha.6",
-    "bootstrap-for-vue": "^0.2.11",
+    "bootstrap-for-vue": "^0.3.7",
     "copy-to-clipboard": "^3.0.5",
     "marked": "^0.3.6",
     "node-sass": "^4.5.0",

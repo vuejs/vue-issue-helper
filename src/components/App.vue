@@ -17,11 +17,28 @@
           </div>
 
           <div class="col-12">
-            <input-text v-model="title" title="Issue Title" required autofocus/>
+            <input-text v-model="title" title="Issue Title" @blur="findIssues" required autofocus subtitle="yes">
+              <template slot="subtitle">
+              <div class="similar-issues" v-if="issues.length">
+                Similar issues:
+
+                <ul>
+                  <li v-for="issue in issues" :key="issue.id">
+                    <a class="issue" :href="issue.url" target="_blank" rel="noreferrer" tabindex="-1">
+                      {{ issue.title }}
+                    </a>
+                  </li>
+                </ul>
+
+                <span role="button" @click="showingAllIssues = true" v-if="!showingAllIssues">show more</span>
+                <span role="button" @click="showingAllIssues = false" v-else>show less</span>
+              </div>
+              </template>
+            </input-text>
           </div>
 
           <!-- content component -->
-          <component :is="type" ref="content" :repo="repo" />
+          <component :is="type" ref="content" :repo="repo"/>
 
           <div class="col-12 my-3 py-3 text-center">
             <input-button type="submit">Preview</input-button>
@@ -58,11 +75,12 @@ import Intro from './Intro.vue'
 import AppHeader from './Header.vue'
 import BugReport from './BugReport.vue'
 import FeatureRequest from './FeatureRequest.vue'
+import search from '../mixins/github-search'
 
 export default {
   name: 'App',
 
-  mixins: [formHelper],
+  mixins: [formHelper, search],
 
   components: {
     Intro,
@@ -90,6 +108,13 @@ export default {
   }),
 
   methods: {
+    findIssues () {
+      this.issues = []
+      if (this.title) {
+        this.fetchIssues(this.title, { is: 'issue', repo: this.repo })
+      }
+    },
+
     generate () {
       this.generated = this.$refs.content.generate()
       this.show = true
@@ -110,12 +135,13 @@ export default {
     } else {
       this.repo = 'vuejs/vue'
     }
-  }
+  },
 }
 </script>
 
 <style lang="scss">
 $brand-primary: #4fc08d;
+$form-group-required-color: white;
 
 @import './node_modules/bootstrap/scss/variables';
 @import './node_modules/bootstrap/scss/bootstrap';
@@ -147,6 +173,12 @@ $brand-primary: #4fc08d;
     > .container {
       width: 100%;
     }
+  }
+}
+
+.similar-issues {
+  .issue {
+    color: inherit;
   }
 }
 </style>
