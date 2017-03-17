@@ -21,7 +21,7 @@
         <a tabindex="-1" target="_blank" href="https://stackoverflow.com/questions/ask?tags=vue.js">Stack Overflow</a>
       </li>
     </ul>
-    <p>Also try to search for your issue - it may have already been answered or
+    <p>Also, try to search for your issue – it may have already been answered or
       even fixed in the development branch. However, if you find that an old,
       closed issue still persists in the latest version, you should open a new
       issue using the form below instead of commenting on the old issue.</p>

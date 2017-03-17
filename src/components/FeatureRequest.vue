@@ -7,7 +7,7 @@
         required
         subtitle="yes">
         <p slot="subtitle">
-          Explain your use case, context and rationale behind this feature request.
+          Explain your use case, context, and rationale behind this feature request.
           An important design goal of Vue is keeping the API surface small and
           straighforward. In general, we only consider adding new features that
           solve a problem that cannot be easily dealt with using existing APIs
@@ -24,8 +24,8 @@
         required
         subtitle="yes">
         <p slot="subtitle">
-          Describe how you propose to solve the problem, and provide code
-          samples of how the API would work once implemented. Note you can use
+          Describe how you propose to solve the problem and provide code
+          samples of how the API would work once implemented. Note that you can use
           <a href="https://guides.github.com/features/mastering-markdown/" target="_blank">
            Markdown
           </a> to format your code blocks.
