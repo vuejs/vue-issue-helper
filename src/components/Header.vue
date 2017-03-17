@@ -2,7 +2,7 @@
   <nav class="navbar navbar-light fixed-top bg-faded mb-3">
     <div class="container d-flex">
       <a class="navbar-brand" href="#">
-        <img src="../assets/images/logo.png" height="24"> Issue Helper</a>
+        <img src="../assets/images/logo.png" alt="Vue's logo" height="24"> Issue Helper</a>
 
       <ul class="navbar-nav ml-auto d-flex flex-row">
         <li class="nav-item px-2">
