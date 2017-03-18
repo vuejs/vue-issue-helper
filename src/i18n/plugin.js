@@ -6,24 +6,24 @@ export default Vue => {
   Vue.mixin({
     beforeCreate () {
       if (this.$root === this) {
-        Vue.util.defineReactive(this, 'locale', locales['zh-cn'])
-        this.setLang = lang => {
-          this.locale = locales[lang]
-        }
+        this.$locales = locales
+        Vue.util.defineReactive(this, '$lang', 'en')
       }
     }
   })
 
   // global i18n method for simple phrases in text interpolations
   Vue.prototype.i18n = function (id) {
-    return this.$root.locale[id] || '!!! i18n content not found !!!'
+    const locale = this.$root.$locales[this.$root.$lang]
+    return locale[id] || '!!! i18n content not found !!!'
   }
 
   // component for rendering an i18n locale markdown file
   Vue.component('i18n', {
     props: ['id'],
     render (h) {
-      const content = this.$root.locale[this.id]
+      const locale = this.$root.$locales[this.$root.$lang]
+      const content = locale[this.id]
       return h('div', {
         domProps: {
           innerHTML: content

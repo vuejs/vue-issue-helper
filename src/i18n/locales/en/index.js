@@ -1,4 +1,6 @@
 module.exports = {
+  _label: 'EN',
+
   // intro
   'intro': require('./intro.md'),
   'intro-modal-title': 'The reason behind our strict issue policy',

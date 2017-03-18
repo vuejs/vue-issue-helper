@@ -1,4 +1,6 @@
 module.exports = {
+  _label: '中文',
+
   // intro
   'intro': require('./intro.md'),
   'intro-modal-title': '为什么要有这么严格的 issue 规定',

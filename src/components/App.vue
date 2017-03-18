@@ -1,6 +1,6 @@
 <template>
 <div class="app" style="padding-top: 54px">
-  <app-header :repo="repo"/>
+  <app-header :lang="$lang" @change-lang="lang => $lang = lang"/>
 
   <div class="container py-3">
     <form class="row" @submit.prevent="generate">
