@@ -29,23 +29,26 @@ export default Vue => {
         }
       })
     },
-    mounted () {
-      [...this.$el.querySelectorAll('a')].forEach(a => {
-        // avoid interferring with form input tab focus
-        a.setAttribute('tabindex', '-1')
-        const href = a.getAttribute('href')
-        if (href) {
-          if (href.charAt(0) !== '#') {
-            // make external links open in new tab
-            a.setAttribute('target', '_blank')
-          } else {
-            // hash link, emit event
-            a.addEventListener('click', () => {
-              this.$emit(`click-${href.slice(1)}`)
-            })
-          }
-        }
-      })
-    }
+    mounted: processLinks,
+    updated: processLinks
   })
+
+  function processLinks () {
+    [...this.$el.querySelectorAll('a')].forEach(a => {
+      // avoid interferring with form input tab focus
+      a.setAttribute('tabindex', '-1')
+      const href = a.getAttribute('href')
+      if (href) {
+        if (href.charAt(0) !== '#') {
+          // make external links open in new tab
+          a.setAttribute('target', '_blank')
+        } else {
+          // hash link, emit event
+          a.addEventListener('click', () => {
+            this.$emit(`click-${href.slice(1)}`)
+          })
+        }
+      }
+    })
+  }
 }
