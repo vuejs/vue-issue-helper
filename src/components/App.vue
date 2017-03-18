@@ -198,6 +198,11 @@ $form-group-required-color: white;
   input, textarea {
     font-size: 0.9rem;
   }
+  input.bootstrap-for-vue-Search-input-search-suggestion {
+    margin-top: .1rem;
+    // input:font-size + shadow:margin-top = 1rem.
+    // It is required only when input has < 1rem font-size.
+  }
 }
 
 @include media-breakpoint-down(md) {
