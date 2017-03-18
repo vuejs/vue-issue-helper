@@ -140,19 +140,19 @@ export default {
       const { version, reproduction, steps, expected, actual, extra } = this.attrs
 
       return generate(`
-### version
+### Version
 ${version}
 
-### reproduction link
+### Reproduction link
 [${reproduction}](${reproduction})
 
-### steps to reproduce
+### Steps to reproduce
 ${steps}
 
-### what is expected?
+### What is expected?
 ${expected}
 
-### what is actually happening?
+### What is actually happening?
 ${actual}
 
 ${extra ? `---\n${extra}` : ''}
