@@ -3,7 +3,7 @@
     <div class="col-12 col-lg-4">
       <input-typeahead
         v-model="attrs.version"
-        title="Version"
+        :title="i18n('version-title')"
         :suggestions="suggestions"
         :search="{
           sort: [{ field: 'index', direction: 'asc' }],

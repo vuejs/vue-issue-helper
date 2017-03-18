@@ -5,6 +5,12 @@ module.exports = {
   'intro-modal': require('./intro-modal.md'),
 
   // bug report
+  'repo-title': 'I am opening an issue for',
+  'repo-subtitle': 'Please make sure to file the issue at appropriate repo.',
+  'type-title': 'This is a',
+  'title-title': 'Issue Title',
+
+  'version-title': 'Version',
   'version-subtitle': 'Check if the issue is reproducible with the latest stable version of Vue.',
 
   'repro-title': 'Link to minimal reproduction',

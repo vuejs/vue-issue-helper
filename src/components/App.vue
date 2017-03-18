@@ -11,21 +11,22 @@
           <div class="col-6">
             <input-select
               v-model="repo"
-              title="I am opening an issue for"
-              :options="repos"/>
+              :title="i18n('repo-title')"
+              :options="repos"
+              :subtitle="i18n('repo-subtitle')"/>
           </div>
 
           <div class="col-6">
             <input-select
               v-model="type"
-              title="This is a"
+              :title="i18n('type-title')"
               :options="types"/>
           </div>
 
           <div class="col-12">
             <input-text
               v-model="title"
-              title="Issue Title"
+              :title="i18n('title-title')"
               @blur="findIssues"
               required
               autofocus
