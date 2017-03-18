@@ -11,62 +11,52 @@
           limit: 10
         }"
         required
-        subtitle="Check if the issue is reproducible with the latest stable version of Vue."/>
+        :subtitle="i18n('version-subtitle')"/>
     </div>
 
     <div class="col-12 col-lg-8">
       <input-text
         type="url"
         v-model="attrs.reproduction"
-        title="Link to minimal reproduction"
+        :title="i18n('repro-title')"
         required
         subtitle="yes">
-        <div slot="subtitle">
-          Please provide a link to a JSFiddle/JSBin/CodePen or GitHub repo.
-          <br>
-          <a tabindex="-1" href="#" @click="show = true">
-            What is a <em>minimal reproduction</em>, and why is it required?
-          </a>
-        </div>
+        <i18n slot="subtitle"
+          id="repro-subtitle"
+          @click-modal="show = true"/>
       </input-text>
     </div>
 
     <div class="col-12">
       <input-textarea
         v-model="attrs.steps"
-        title="Steps to reproduce"
+        :title="i18n('steps-title')"
         required
         subtitle="yes">
-        <div slot="subtitle">
-          Clear and concise reproduction instructions are important for us to be
-          able to triage your issue in a timely manner. Note that you can use
-          <a href="https://guides.github.com/features/mastering-markdown/" target="_blank">
-           Markdown
-          </a> to format lists and code.
-        </div>
+        <i18n slot="subtitle" id="steps-subtitle"/>
       </input-textarea>
     </div>
 
     <div class="col-12 col-lg-6">
-      <input-textarea v-model="attrs.expected" title="What is expected?" required/>
+      <input-textarea v-model="attrs.expected" :title="i18n('expected-title')" required/>
     </div>
 
     <div class="col-12 col-lg-6">
-      <input-textarea v-model="attrs.actual" title="What is actually happening?" required/>
+      <input-textarea v-model="attrs.actual" :title="i18n('actual-title')" required/>
     </div>
 
     <div class="col-12">
       <input-textarea v-model="attrs.extra"
-        title="Any additional comments? (optional)"
-        subtitle="e.g. some background/context of how you ran into this bug." />
+        :title="i18n('extra-title')"
+        :subtitle="i18n('extra-subtitle')" />
     </div>
 
     <modal :open="show" @close="show = false">
       <div class="card">
         <div class="card-header">
-          <h4 class="mb-0">{{ i18n('repro-title') }}</h4>
+          <h4 class="mb-0">{{ i18n('repro-modal-title') }}</h4>
         </div>
-        <i18n class="card-block" id="repro"/>
+        <i18n class="card-block" id="repro-modal"/>
       </div>
     </modal>
   </div>

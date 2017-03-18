@@ -16,7 +16,7 @@ export default Vue => {
 
   // global i18n method for simple phrases in text interpolations
   Vue.prototype.i18n = function (id) {
-    return this.$root.locale.phrases[id]
+    return this.$root.locale[id]
   }
 
   // component for rendering an i18n locale markdown file
@@ -25,7 +25,7 @@ export default Vue => {
     render (h) {
       return h('div', {
         domProps: {
-          innerHTML: marked(this.$root.locale[this.id])
+          innerHTML: marked(this.$root.locale[this.id].trim())
         }
       })
     },

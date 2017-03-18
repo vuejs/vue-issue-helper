@@ -3,33 +3,20 @@
     <div class="col-12">
       <input-textarea
         v-model="attrs.rationale"
-        title="What problem does this feature solve?"
+        :title="i18n('rationale-title')"
         required
         subtitle="yes">
-        <p slot="subtitle">
-          Explain your use case, context, and rationale behind this feature request.
-          An important design goal of Vue is keeping the API surface small and
-          straighforward. In general, we only consider adding new features that
-          solve a problem that cannot be easily dealt with using existing APIs
-          (i.e. not just an alternative way of doing things that can already be
-          done). The problem should also be common enough to justify the addition.
-        </p>
+        <i18n slot="subtitle" id="rationale-subtitle"/>
       </input-textarea>
     </div>
 
     <div class="col-12">
       <input-textarea
         v-model="attrs.proposal"
-        title="What does the proposed API look like?"
+        :title="i18n('proposal-title')"
         required
         subtitle="yes">
-        <p slot="subtitle">
-          Describe how you propose to solve the problem and provide code
-          samples of how the API would work once implemented. Note that you can use
-          <a href="https://guides.github.com/features/mastering-markdown/" target="_blank">
-           Markdown
-          </a> to format your code blocks.
-        </p>
+        <i18n slot="subtitle" id="proposal-subtitle"/>
       </input-textarea>
     </div>
   </div>

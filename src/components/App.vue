@@ -65,7 +65,7 @@
           <component :is="type" ref="content" :repo="repo"/>
 
           <div class="col-12 my-3 py-3 text-center">
-            <input-button type="submit">Preview</input-button>
+            <input-button type="submit">{{ i18n('preview') }}</input-button>
           </div>
         </div>
       </div>
@@ -74,12 +74,12 @@
     <modal :open="show" @close="show = false">
       <div class="card">
         <div class="card-header d-flex align-items-center">
-          <h5 class="mb-0">Issue Preview</h5>
+          <h5 class="mb-0">{{ i18n('preview-title') }}</h5>
           <input-button
             class="btn btn-primary ml-auto"
             type="submit"
             @click.native.prevent="create">
-            Create
+            {{ i18n('create') }}
           </input-button>
         </div>
         <div class="card-block preview"
