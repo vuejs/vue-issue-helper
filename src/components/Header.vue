@@ -26,6 +26,10 @@ export default {
 </script>
 
 <style lang="scss">
+.navbar {
+  border-bottom: 1px solid #eee;
+}
+
 .nav-link {
   cursor: pointer;
   &.active {

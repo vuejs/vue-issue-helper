@@ -1,6 +1,6 @@
 <template>
-  <div class="col-12 intro bg-faded">
-    <i18n id="intro" @click-modal="show = true"/>
+  <div class="col-12">
+    <i18n id="intro" class="intro bg-faded" @click-modal="show = true"/>
     <modal :open="show" @close="show = false">
       <div class="card">
         <div class="card-header">
@@ -23,9 +23,9 @@ export default {
 <style lang="scss">
 .intro {
   font-size: .9em;
-  padding: 1.5em 2em;
+  padding: 1.5em 2em .5em;
   border-radius: 4px;
-  margin: 0 15px 15px;
+  margin-bottom: 15px;
   h2 {
     font-size: 1.6em;
   }
