@@ -39,4 +39,8 @@ module.exports = {
   'preview': 'Preview',
   'preview-title': 'Issue Preview',
   'create': 'Create',
+
+  // misc
+  'bug-report': 'Bug Report',
+  'feature-request': 'Feature Request',
 }
