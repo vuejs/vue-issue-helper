@@ -47,16 +47,18 @@
                     </li>
                   </ul>
 
-                  <span v-if="!showingAllIssues"
-                    role="button"
-                    @click="showingAllIssues = true">
-                    show more
-                  </span>
-                  <span v-else
-                    role="button"
-                    @click="showingAllIssues = false">
-                    show less
-                  </span>
+                  <p v-if="showIssueToggleControl">
+                    <span v-if="!showingAllIssues"
+                      role="button"
+                      @click="showingAllIssues = true">
+                      Show more
+                    </span>
+                    <span v-else
+                      role="button"
+                      @click="showingAllIssues = false">
+                      Show less
+                    </span>
+                  </p>
                 </div>
               </template>
             </input-text>

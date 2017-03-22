@@ -4,6 +4,12 @@ function toArray(any) {
   return Array.isArray(any) ? any : [any]
 }
 
+/**
+ * Maximum number of related issues to be shown by default
+ * @type {Number}
+ */
+const MAX_SHOWN_ISSUE_COUNT = 5
+
 export default {
   data: () => ({
     _issues: [],
@@ -14,12 +20,19 @@ export default {
     issues: {
       get () {
         const issues = this.$data._issues
-        const all = this.showingAllIssues
-        return all ? issues : issues.slice(0, 5)
+        return this.showingAllIssues ? issues : issues.slice(0, MAX_SHOWN_ISSUE_COUNT)
       },
       set (issues) {
         this.$data._issues = issues
       }
+    },
+
+    /**
+     * Whether to show the "Show more/less" button after the similar issue list.
+     * @return {Boolean}
+     */
+    showIssueToggleControl () {
+      return this.$data._issues.length > MAX_SHOWN_ISSUE_COUNT
     }
   },
 
