@@ -38,7 +38,7 @@
                   <ul>
                     <li v-for="issue in issues" :key="issue.id">
                       <a class="issue"
-                        :href="issue.url"
+                        :href="issue.html_url"
                         target="_blank"
                         rel="noreferrer"
                         tabindex="-1">
