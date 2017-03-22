@@ -86,7 +86,7 @@ export default {
       const repo = this.repo
       const versions = this.versions
 
-      if (!(repo in versions)) return []
+      if (!(repo in versions)) return [{ name: 'Loading...' }]
 
       return versions[repo].slice()
           .sort((a, b) => -versionCompare(a.id, b.id))
