@@ -9,7 +9,7 @@
 - 仔细阅读 [文档](https://cn.vuejs.org/v2/guide/)
 - 观看 [视频教程](https://laracasts.com/series/learn-vue-2-step-by-step) (英文)
 - 到 [官方论坛](https://forum.vuejs.org/) 提问（英文）
-- 在 [StackOverflow](https://stackoverflow.com/questions/ask?tags=vue.js) (英文) 或是 [SegmentFault](https://segmentfault.com/search?q=vue)（中文）搜索和提问
+- 在 [StackOverflow](https://stackoverflow.com/questions/ask?tags=vue.js) (英文) 或是 [SegmentFault](https://segmentfault.com/t/vue.js)（中文）搜索和提问
 - 到 [中文社区](http://www.vue-js.com/) 提问（非官方）
 
 最后，在开 issue 前，可以先搜索以下以往的旧 issue - 你遇到的问题可能已经有人提了，也可能已经在最新版本中被修正。注意：如果你发现一个已经关闭的旧 issue 在最新版本中任然存在，请不要在旧 issue 下面留言，而应该用下面的表单开一个新的 issue。
