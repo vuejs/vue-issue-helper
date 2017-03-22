@@ -136,10 +136,6 @@ export default {
     repo: '',
     repos,
     type: 'bug-report',
-    types: [
-      { id: 'bug-report', name: 'Bug Report' },
-      { id: 'feature-request', name: 'Feature Request' }
-    ],
     versions: {}
   }),
 
@@ -162,6 +158,15 @@ export default {
       const label = this.type === 'feature-request' ? '&labels=feature%20request' : ''
       window.open(`https://github.com/${this.repo}/issues/new?title=${title}&body=${body}${label}`)
     },
+  },
+
+  computed: {
+    types () {
+      return this.$lang && [
+        { id: 'bug-report', name: this.i18n('bug-report') },
+        { id: 'feature-request', name: this.i18n('feature-request') }
+      ]
+    }
   },
 
   created () {

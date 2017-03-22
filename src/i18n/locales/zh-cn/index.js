@@ -39,4 +39,8 @@ module.exports = {
   'preview': '预览',
   'preview-title': '预览',
   'create': '创建 Issue',
+
+  // misc
+  'bug-report': '错误报告',
+  'feature-request': '功能要求',
 }
