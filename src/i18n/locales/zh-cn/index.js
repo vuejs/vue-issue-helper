@@ -43,4 +43,7 @@ module.exports = {
   // misc
   'bug-report': '错误报告',
   'feature-request': '功能要求',
+  'similar-issues': '类似的 issue',
+  'show-more': '展开',
+  'show-less': '收起'
 }

@@ -10,7 +10,7 @@ module.exports = {
   'repo-title': 'I am opening an issue for',
   'repo-subtitle': 'Please make sure to file the issue at appropriate repo.',
   'type-title': 'This is a',
-  'title-title': 'Issue Title',
+  'title-title': 'Issue title',
 
   'version-title': 'Version',
   'version-subtitle': 'Check if the issue is reproducible with the latest stable version of Vue.',
@@ -43,4 +43,7 @@ module.exports = {
   // misc
   'bug-report': 'Bug Report',
   'feature-request': 'Feature Request',
+  'similar-issues': 'Similar issues',
+  'show-more': 'Show more',
+  'show-less': 'Show less'
 }

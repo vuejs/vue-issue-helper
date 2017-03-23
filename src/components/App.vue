@@ -33,7 +33,7 @@
               subtitle="yes">
               <template slot="subtitle">
                 <div class="similar-issues" v-if="issues.length">
-                  Similar issues:
+                  {{ i18n('similar-issues') }}:
 
                   <ul>
                     <li v-for="issue in issues" :key="issue.id">
@@ -51,12 +51,12 @@
                     <span v-if="!showingAllIssues"
                       role="button"
                       @click="showingAllIssues = true">
-                      Show more
+                      {{ i18n('show-more') }}
                     </span>
                     <span v-else
                       role="button"
                       @click="showingAllIssues = false">
-                      Show less
+                      {{ i18n('show-less') }}
                     </span>
                   </p>
                 </div>
