@@ -40,10 +40,6 @@ module.exports = {
   'preview-title': '预览',
   'create': '创建 Issue',
 
-  // footer
-  'built-with': '以<a target=_blank href="https://github.com/vuejs/vue-cli">vue-cli</a>建立',
-  'checkout-github': '前往<a target=_blank href="https://github.com/vuejs/vue-issue">GitHub</a>获取源代码',
-
   // misc
   'bug-report': '错误报告',
   'feature-request': '功能要求',

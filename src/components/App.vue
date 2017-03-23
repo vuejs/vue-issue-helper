@@ -96,9 +96,10 @@
   <footer class="text-center text-muted mb-3">
     <p>&hellip;</p>
     <small>
-      <span v-html="i18n('built-with')"></span>
+      Built with
+      <a href="https://github.com/vuejs/vue-cli">vue-cli</a>
       &centerdot;
-      <span v-html="i18n('checkout-github')"></span>
+      Check out source on <a href="https://github.com/vuejs/vue-issue">GitHub</a>
     </small>
   </footer>
 </div>

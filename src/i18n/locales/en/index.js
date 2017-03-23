@@ -40,10 +40,6 @@ module.exports = {
   'preview-title': 'Issue Preview',
   'create': 'Create',
 
-  // footer
-  'built-with': 'Built with <a target=_blank href="https://github.com/vuejs/vue-cli">vue-cli</a>',
-  'checkout-github': 'Check out source on <a target=_blank href="https://new-issue.vuejs.org">GitHub</a>',
-
   // misc
   'bug-report': 'Bug Report',
   'feature-request': 'Feature Request',
