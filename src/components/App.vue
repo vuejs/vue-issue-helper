@@ -33,7 +33,7 @@
               subtitle="yes">
               <template slot="subtitle">
                 <div class="similar-issues" v-if="issues.length">
-                  Similar issues:
+                  {{ i18n('similar-issues') }}:
 
                   <ul>
                     <li v-for="issue in issues" :key="issue.id">
@@ -51,12 +51,12 @@
                     <span v-if="!showingAllIssues"
                       role="button"
                       @click="showingAllIssues = true">
-                      Show more
+                      {{ i18n('show-more') }}
                     </span>
                     <span v-else
                       role="button"
                       @click="showingAllIssues = false">
-                      Show less
+                      {{ i18n('show-less') }}
                     </span>
                   </p>
                 </div>
@@ -96,10 +96,9 @@
   <footer class="text-center text-muted mb-3">
     <p>&hellip;</p>
     <small>
-      Built with
-      <a href="https://github.com/vuejs/vue-cli">vue-cli</a>
+      <span v-html="i18n('built-with')"></span>
       &centerdot;
-      Check out source on <a href="https://github.com/vuejs/vue-issue">GitHub</a>
+      <span v-html="i18n('checkout-github')"></span>
     </small>
   </footer>
 </div>
