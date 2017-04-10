@@ -45,5 +45,6 @@ module.exports = {
   'feature-request': '功能要求',
   'similar-issues': '类似的 issue',
   'show-more': '展开',
-  'show-less': '收起'
+  'show-less': '收起',
+  'drop-warn': '由于 GitHub API 的限制，这里不支持图片拖拽上传功能。但是你可以先创建 issue，然后在 GitHub 的界面中上传需要的图片。'
 }

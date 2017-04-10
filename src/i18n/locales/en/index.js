@@ -45,5 +45,9 @@ module.exports = {
   'feature-request': 'Feature Request',
   'similar-issues': 'Similar issues',
   'show-more': 'Show more',
-  'show-less': 'Show less'
+  'show-less': 'Show less',
+  'drop-warn':
+    `Unfortunately, image drop/uploading is not supported due to GitHub API ` +
+    `limitations. However, you can create the issue first (which will take you ` +
+    `to GitHub) and then drop the images needed.`
 }

@@ -13,7 +13,16 @@ Vue.use(i18n)
 Vue.use(VueResource)
 Vue.use(BootstrapForVue, { all: true, custom: true })
 
-new Vue({
+window.addEventListener('dragover', e => {
+  e.preventDefault()
+})
+
+window.addEventListener('drop', e => {
+  e.preventDefault()
+  alert(app.i18n('drop-warn'))
+})
+
+const app = new Vue({
   el: '#app',
   ...App
 })
