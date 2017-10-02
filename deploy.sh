@@ -1,7 +1,8 @@
+rm -rf .deploy
 mkdir .deploy
 cp CNAME .deploy/CNAME
 cp index.html .deploy/index.html
-cp -R dist .deploy/dist
+cp -R dist .deploy/
 cd .deploy
 git init
 git add -A
