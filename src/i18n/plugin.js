@@ -1,5 +1,6 @@
 import marked from 'marked'
 import locales from './locales/index'
+import qs from 'qs'
 
 export default Vue => {
   // add locale and lang to root instance.
@@ -8,7 +9,8 @@ export default Vue => {
     beforeCreate () {
       if (this.$root === this) {
         this.$locales = locales
-        Vue.util.defineReactive(this, '$lang', 'en')
+        const query = qs.parse(window.location.search.slice(1))
+        Vue.util.defineReactive(this, '$lang', query && query.lang || 'en')
       }
     }
   })

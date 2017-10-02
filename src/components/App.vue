@@ -1,6 +1,6 @@
 <template>
 <div class="app" style="padding-top: 54px">
-  <app-header :lang="$lang" @change-lang="lang => $lang = lang"/>
+  <app-header :lang="$lang" @change-lang="setLang"/>
 
   <div class="container py-3">
     <form class="row" @submit.prevent="generate">
@@ -108,6 +108,7 @@
 <script lang="babel">
 import { repos } from '../config'
 import { formHelper } from 'bootstrap-for-vue'
+import qs from 'qs'
 
 import Intro from './Intro.vue'
 import AppHeader from './Header.vue'
@@ -142,6 +143,10 @@ export default {
   }),
 
   methods: {
+    setLang (lang) {
+      this.$lang = lang
+    },
+
     findIssues () {
       this.issues = []
       if (this.title) {
@@ -172,12 +177,14 @@ export default {
   },
 
   created () {
-    const results = window.location.href.match(/[?&]repo(=([^&#]*)|&|#|$)/)
-    if (results && results[2]) {
-      this.repo = decodeURIComponent(results[2].replace(/\+/g, " "))
-    } else {
-      this.repo = 'vuejs/vue'
-    }
+    const query = qs.parse(window.location.search.slice(1))
+    this.repo = query.repo || 'vuejs/vue'
+    // const results = window.location.href.match(/[?&]repo(=([^&#]*)|&|#|$)/)
+    // if (results && results[2]) {
+    //   this.repo = decodeURIComponent(results[2].replace(/\+/g, " "))
+    // } else {
+    //   this.repo = 'vuejs/vue'
+    // }
   },
 }
 </script>
