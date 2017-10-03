@@ -108,7 +108,7 @@
 <script lang="babel">
 import { repos } from '../config'
 import { formHelper } from 'bootstrap-for-vue'
-import qs from 'qs'
+import { getQuery, updateQuery } from '../helpers'
 
 import Intro from './Intro.vue'
 import AppHeader from './Header.vue'
@@ -145,6 +145,7 @@ export default {
   methods: {
     setLang (lang) {
       this.$lang = lang
+      updateQuery({ lang })
     },
 
     findIssues () {
@@ -177,14 +178,7 @@ export default {
   },
 
   created () {
-    const query = qs.parse(window.location.search.slice(1))
-    this.repo = query.repo || 'vuejs/vue'
-    // const results = window.location.href.match(/[?&]repo(=([^&#]*)|&|#|$)/)
-    // if (results && results[2]) {
-    //   this.repo = decodeURIComponent(results[2].replace(/\+/g, " "))
-    // } else {
-    //   this.repo = 'vuejs/vue'
-    // }
+    this.repo = getQuery().repo || 'vuejs/vue'
   },
 }
 </script>

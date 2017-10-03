@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import { versionCompare, generate } from '../helpers'
+import { versionCompare, generate, updateQuery } from '../helpers'
 
 export default {
   props: ['repo'],
@@ -161,6 +161,7 @@ ${extra ? `---\n${extra}` : ''}
       } else {
         this.attrs.version = this.versions[repo][0].id
       }
+      updateQuery({ repo })
     }
   }
 }
