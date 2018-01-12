@@ -1,12 +1,13 @@
 var path = require('path')
 var webpack = require('webpack')
+var htmlPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
-    publicPath: '/dist/',
-    filename: 'build.js'
+    publicPath: '/',
+    filename: 'build.[hash].js'
   },
   module: {
     rules: [
@@ -54,7 +55,12 @@ module.exports = {
   performance: {
     hints: false
   },
-  devtool: '#eval-source-map'
+  devtool: '#eval-source-map',
+  plugins: [
+    new htmlPlugin({
+      template: 'src/index.html'
+    })
+  ]
 }
 
 if (process.env.NODE_ENV === 'production') {
