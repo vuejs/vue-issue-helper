@@ -16,6 +16,7 @@
 
     <div class="col-12 col-lg-8">
       <input-text
+        v-if="repo !== 'vuejs/vue-devtools'"
         type="url"
         v-model="attrs.reproduction"
         :title="i18n('repro-title')"
@@ -24,6 +25,15 @@
         <i18n slot="subtitle"
           id="repro-subtitle"
           @click-modal="show = true"/>
+      </input-text>
+
+      <input-text v-else
+        v-model="attrs.browserAndOS"
+        :title="i18n('browser-and-os-title')"
+        required
+        subtitle="yes">
+        <i18n slot="subtitle"
+          id="browser-and-os-subtitle"/>
       </input-text>
     </div>
 
@@ -76,7 +86,8 @@ export default {
       steps: '',
       expected: '',
       actual: '',
-      extra: ''
+      extra: '',
+      browserAndOS: ''
     },
     versions: {}
   }),

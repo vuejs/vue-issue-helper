@@ -20,6 +20,9 @@ module.exports = {
   'repro-modal-title': 'About Reproductions',
   'repro-modal': require('./repro-modal.md').default,
 
+  'browser-and-os-title': 'Browser and OS info',
+  'browser-and-os-subtitle': 'Please specify browser name & version, OS name & version. Example: Chrome 62 / Windows 10',
+
   'steps-title': 'Steps to reproduce',
   'steps-subtitle': require('./steps-subtitle.md').default,
 
