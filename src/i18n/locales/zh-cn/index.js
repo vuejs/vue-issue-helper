@@ -20,6 +20,9 @@ module.exports = {
   'repro-modal-title': '关于重现',
   'repro-modal': require('./repro-modal.md').default,
 
+  'browser-and-os-title': '浏览器和操作系统信息',
+  'browser-and-os-subtitle': '请写明浏览器和操作系统的名称/版本，例如: Chrome 62 / Windows 10',
+
   'steps-title': '重现步骤',
   'steps-subtitle': require('./steps-subtitle.md').default,
 
