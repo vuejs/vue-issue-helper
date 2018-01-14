@@ -138,14 +138,18 @@ export default {
     },
 
     generate () {
-      const { version, reproduction, steps, expected, actual, extra } = this.attrs
+      const { version, reproduction, steps, expected, actual, extra, browserAndOS } = this.attrs
 
       return generate(`
 ### Version
 ${version}
 
-### Reproduction link
-[${reproduction}](${reproduction})
+${
+  reproduction ? `### Reproduction link
+[${reproduction}](${reproduction})` : ``}${
+  browserAndOS ? `### Browser and OS info
+${browserAndOS}` : ``
+}
 
 ### Steps to reproduce
 ${steps}
