@@ -1,23 +1,29 @@
 <template>
-  <div class="col-12" style="padding:0">
-    <div class="col-12">
-      <input-textarea
-        v-model="attrs.rationale"
+  <div class="feature-request">
+    <div class="vue-grid col-1 default-gap">
+      <VueFormField
         :title="i18n('rationale-title')"
-        required
-        subtitle="yes">
+      >
+        <VueInput
+          type="textarea"
+          rows="4"
+          v-model="attrs.rationale"
+          required
+        />
         <i18n slot="subtitle" id="rationale-subtitle"/>
-      </input-textarea>
-    </div>
+      </VueFormField>
 
-    <div class="col-12">
-      <input-textarea
-        v-model="attrs.proposal"
+      <VueFormField
         :title="i18n('proposal-title')"
-        required
-        subtitle="yes">
+      >
+        <VueInput
+          type="textarea"
+          rows="4"
+          v-model="attrs.proposal"
+          required
+        />
         <i18n slot="subtitle" id="proposal-subtitle"/>
-      </input-textarea>
+      </VueFormField>
     </div>
   </div>
 </template>
@@ -26,12 +32,14 @@
 import { generate } from '../helpers'
 
 export default {
-  data: () => ({
-    attrs: {
-      rationale: '',
-      proposal: ''
+  data () {
+    return {
+      attrs: {
+        rationale: '',
+        proposal: ''
+      },
     }
-  }),
+  },
 
   methods: {
     generate () {
