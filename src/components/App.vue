@@ -178,7 +178,6 @@ export default {
 
   watch: {
     repo (value) {
-      console.log(value)
       updateQuery({ repo: value })
     },
   },
