@@ -1,74 +1,111 @@
 <template>
-  <div class="row" style="margin:0">
-    <div class="col-12 col-lg-4">
-      <input-typeahead
-        v-model="attrs.version"
+  <div class="bug-report" style="margin:0">
+    <div class="vue-grid col-2 default-gap">
+      <VueFormField
         :title="i18n('version-title')"
-        :suggestions="suggestions"
-        :search="{
-          sort: [{ field: 'index', direction: 'asc' }],
-          empty_sort: [{ field: 'index', direction: 'asc' }],
-          limit: 10
-        }"
-        required
-        :subtitle="i18n('version-subtitle')"/>
-    </div>
+        :subtitle="i18n('version-subtitle')"
+      >
+        <VueTypeAhead
+          v-model="attrs.version"
+          :suggestions="suggestions"
+          :loading="loadingVersion"
+          show-all
+          show-max="30"
+          restrict-choice
+          required
+        />
+      </VueFormField>
 
-    <div class="col-12 col-lg-8">
-      <input-text
+      <VueFormField
         v-if="repo !== 'vuejs/vue-devtools'"
-        type="url"
-        v-model="attrs.reproduction"
         :title="i18n('repro-title')"
-        required
-        subtitle="yes">
-        <i18n slot="subtitle"
+      >
+        <VueInput
+          type="url"
+          v-model="attrs.reproduction"
+          required
+        />
+
+        <i18n
+          slot="subtitle"
           id="repro-subtitle"
-          @click-modal="show = true"/>
-      </input-text>
+          @click-modal="show = true"
+        />
+      </VueFormField>
 
-      <input-text v-else
-        v-model="attrs.browserAndOS"
+      <VueFormField
+        v-else
         :title="i18n('browser-and-os-title')"
-        required
-        subtitle="yes">
-        <i18n slot="subtitle"
-          id="browser-and-os-subtitle"/>
-      </input-text>
-    </div>
+      >
+        <VueInput
+          v-model="attrs.browserAndOS"
+          required
+        />
 
-    <div class="col-12">
-      <input-textarea
-        v-model="attrs.steps"
+        <i18n
+          slot="subtitle"
+          id="browser-and-os-subtitle"
+        />
+      </VueFormField>
+
+      <VueFormField
+        class="span-2"
         :title="i18n('steps-title')"
-        required
-        subtitle="yes">
+      >
+        <VueInput
+          type="textarea"
+          rows="4"
+          v-model="attrs.steps"
+          required
+        />
         <i18n slot="subtitle" id="steps-subtitle"/>
-      </input-textarea>
-    </div>
+      </VueFormField>
 
-    <div class="col-12 col-lg-6">
-      <input-textarea v-model="attrs.expected" :title="i18n('expected-title')" required/>
-    </div>
+      <VueFormField
+        :title="i18n('expected-title')"
+      >
+        <VueInput
+          type="textarea"
+          rows="4"
+          v-model="attrs.expected"
+          required
+        />
+      </VueFormField>
 
-    <div class="col-12 col-lg-6">
-      <input-textarea v-model="attrs.actual" :title="i18n('actual-title')" required/>
-    </div>
+      <VueFormField
+        :title="i18n('actual-title')"
+      >
+        <VueInput
+          type="textarea"
+          rows="4"
+          v-model="attrs.actual"
+          required
+        />
+      </VueFormField>
 
-    <div class="col-12">
-      <input-textarea v-model="attrs.extra"
+      <VueFormField
+        class="span-2"
         :title="i18n('extra-title')"
-        :subtitle="i18n('extra-subtitle')" />
+        :subtitle="i18n('extra-subtitle')"
+      >
+        <VueInput
+          type="textarea"
+          rows="4"
+          v-model="attrs.extra"
+        />
+      </VueFormField>
     </div>
 
-    <modal :open="show" @close="show = false">
-      <div class="card">
-        <div class="card-header">
-          <h4 class="mb-0">{{ i18n('repro-modal-title') }}</h4>
-        </div>
-        <i18n class="card-block" id="repro-modal"/>
+    <VueModal
+      v-if="show"
+      :title="i18n('repro-modal-title')"
+      class="medium"
+      @close="show = false"
+    >
+      <div class="default-body">
+        <i18n id="repro-modal"/>
       </div>
-    </modal>
+    </VueModal>
   </div>
 </template>
 
@@ -78,62 +115,63 @@ import { versionCompare, generate, updateQuery } from '../helpers'
 export default {
   props: ['repo'],
 
-  data: () => ({
-    show: false,
-    attrs: {
-      version: '',
-      reproduction: '',
-      steps: '',
-      expected: '',
-      actual: '',
-      extra: '',
-      browserAndOS: ''
-    },
-    versions: {}
-  }),
+  data () {
+    return {
+      show: false,
+      attrs: {
+        version: '',
+        reproduction: '',
+        steps: '',
+        expected: '',
+        actual: '',
+        extra: '',
+        browserAndOS: ''
+      },
+      versions: [],
+      loadingVersion: false,
+    }
+  },
 
   computed: {
     suggestions () {
-      const repo = this.repo
-      const versions = this.versions
+      return this.versions.slice()
+        .sort((a, b) => -versionCompare(a.value, b.value))
+    },
+  },
 
-      if (!(repo in versions)) return [{ name: 'Loading...' }]
-
-      return versions[repo].slice()
-          .sort((a, b) => -versionCompare(a.id, b.id))
-          .map((a, index) => (Object.assign({}, a, { index })))
+  watch: {
+    repo (repo) {
+      this.versions = []
+      this.attrs.version = ''
+      this.fetchVersions()
     }
+  },
+
+  created () {
+    this.fetchVersions()
   },
 
   methods: {
     async fetchVersions (page = 1) {
-      const response = await this.$http.get(`https://api.github.com/repos/${this.repo}/releases`, {
-        params: {
-          page,
-          per_page: 100
-        }
-      })
-      const versions = await response.json()
+      this.loadingVersion = true
+      const repo = this.repo
+      const response = await fetch(`https://api.github.com/repos/${repo}/releases?page=${page}&per_page=100`)
+      const releases = await response.json()
 
-      if (!versions || !(versions instanceof Array)) return false
+      if (this.repo !== repo) return
 
-      if (!(this.repo in this.versions)) {
-        this.$set(this.versions, this.repo, [])
-      }
+      if (!releases || !(releases instanceof Array)) return false
 
-      this.versions[this.repo].push(
-          ...versions.map(v => (/^v/.test(v.tag_name) ? v.tag_name.substr(1) : v.tag_name))
-              .map(name => ({ id: name, name }))
-      )
-
-      if (page === 1) {
-        this.attrs.version = this.versions[this.repo].length ? this.versions[this.repo][0].id : ''
-      }
+      this.versions = this.versions.concat(releases.map(
+        r => ({ value: /^v/.test(r.tag_name) ? r.tag_name.substr(1) : r.tag_name })
+      ))
 
       const link = response.headers.get('Link')
 
       if (link && link.indexOf('rel="next"') > -1) {
-        this.fetchVersions(page + 1)
+        await this.fetchVersions(page + 1)
+      } else {
+        this.loadingVersion = false
       }
     },
 
@@ -164,20 +202,5 @@ ${extra ? `---\n${extra}` : ''}
   `.trim())
     }
   },
-
-  created () {
-    this.fetchVersions()
-  },
-
-  watch: {
-    repo (repo) {
-      if (!this.versions[repo]) {
-        this.fetchVersions()
-      } else {
-        this.attrs.version = this.versions[repo][0].id
-      }
-      updateQuery({ repo })
-    }
-  }
 }
 </script>
