@@ -110,7 +110,7 @@
 </template>
 
 <script>
-import { versionCompare, generate, updateQuery } from '../helpers'
+import { versionCompare, generate } from '../helpers'
 
 export default {
   props: ['repo'],
@@ -140,7 +140,7 @@ export default {
   },
 
   watch: {
-    repo (repo) {
+    repo () {
       this.versions = []
       this.attrs.version = ''
       this.fetchVersions()

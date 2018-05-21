@@ -31,8 +31,6 @@
 </template>
 
 <script>
-import locales from '../i18n/locales/index'
-
 export default {
   props: ['lang']
 }
@@ -42,8 +40,8 @@ export default {
 @import "../style/imports"
 
 .app-header
-  background lighten($vue-color-light-neutral, 60%)
-  border-bottom solid 1px $vue-color-light-neutral
+  background lighten($vue-ui-color-light-neutral, 60%)
+  border-bottom solid 1px $vue-ui-color-light-neutral
 
   &,
   .container,
@@ -76,6 +74,6 @@ export default {
     cursor default
     &:not(.active)
       cursor pointer
-      color $vue-color-dark
+      color $vue-ui-color-dark
 
 </style>

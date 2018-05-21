@@ -2,9 +2,9 @@ module.exports = {
   _label: 'EN',
 
   // intro
-  'intro': require('./intro.md').default,
+  'intro': require('./intro.md'),
   'intro-modal-title': 'The reason behind our strict issue policy',
-  'intro-modal': require('./intro-modal.md').default,
+  'intro-modal': require('./intro-modal.md'),
 
   // bug report
   'repo-title': 'I am opening an issue for',
@@ -16,15 +16,15 @@ module.exports = {
   'version-subtitle': 'Check if the issue is reproducible with the latest stable version of Vue.',
 
   'repro-title': 'Link to minimal reproduction',
-  'repro-subtitle': require('./repro-subtitle.md').default,
+  'repro-subtitle': require('./repro-subtitle.md'),
   'repro-modal-title': 'About Reproductions',
-  'repro-modal': require('./repro-modal.md').default,
+  'repro-modal': require('./repro-modal.md'),
 
   'browser-and-os-title': 'Browser and OS info',
   'browser-and-os-subtitle': 'Please specify browser name & version, OS name & version. Example: Chrome 62 / Windows 10',
 
   'steps-title': 'Steps to reproduce',
-  'steps-subtitle': require('./steps-subtitle.md').default,
+  'steps-subtitle': require('./steps-subtitle.md'),
 
   'expected-title': 'What is expected?',
   'actual-title': 'What is actually happening?',
@@ -33,10 +33,10 @@ module.exports = {
 
   // feature request
   'rationale-title': 'What problem does this feature solve?',
-  'rationale-subtitle': require('./rationale-subtitle.md').default,
+  'rationale-subtitle': require('./rationale-subtitle.md'),
 
   'proposal-title': 'What does the proposed API look like?',
-  'proposal-subtitle': require('./proposal-subtitle.md').default,
+  'proposal-subtitle': require('./proposal-subtitle.md'),
 
   // preview
   'preview': 'Preview',

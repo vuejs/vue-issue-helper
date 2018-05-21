@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 const API_ENDPOINT = 'https://api.github.com/search/issues'
 
 function toArray(any) {
@@ -43,9 +45,7 @@ export default {
           ).join(' ') + ' ' + term
 
       try {
-        const response = await this.$http.get(API_ENDPOINT, { params: { q } })
-        const { items } = await response.json()
-
+        const { items } = await axios.get(API_ENDPOINT, { params: { q } })
         this.$data._issues = items || []
       } catch (e) {
         // ignore
