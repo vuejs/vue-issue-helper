@@ -110,7 +110,8 @@
 </template>
 
 <script>
-import { versionCompare, generate } from '../helpers'
+import { gt } from 'semver'
+import { generate } from '../helpers'
 
 export default {
   props: ['repo'],
@@ -134,8 +135,9 @@ export default {
 
   computed: {
     suggestions () {
-      return this.versions.slice()
-        .sort((a, b) => -versionCompare(a.value, b.value))
+      return this.versions
+        .slice()
+        .sort((a, b) => gt(a.value, b.value) ? -1 : 1)
     },
   },
 
