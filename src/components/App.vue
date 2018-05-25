@@ -88,7 +88,9 @@
       </div>
 
       <!-- content component -->
-      <component :is="type" ref="content" :repo="repo"/>
+      <keep-alive>
+        <component :is="type" ref="content" :repo="repo"/>
+      </keep-alive>
 
       <div class="form-actions">
         <VueButton
