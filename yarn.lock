@@ -859,9 +859,9 @@
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@vue/preload-webpack-plugin/-/preload-webpack-plugin-1.0.0.tgz#08f156532909824da2aad258e151742d1e8f822e"
 
-"@vue/ui@^0.5.1":
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/@vue/ui/-/ui-0.5.1.tgz#c1d9c7c2951d90ecb7d53c4cd29f3c9055eb521c"
+"@vue/ui@^0.5.2":
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/@vue/ui/-/ui-0.5.2.tgz#5a7e62d0ca3cf320d1aa661f65f7c652bf9b1e22"
   dependencies:
     focus-visible "^4.1.4"
     material-design-icons "^3.0.1"
