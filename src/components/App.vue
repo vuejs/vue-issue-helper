@@ -6,7 +6,7 @@
     <form class="main-form" @submit.prevent="generate">
       <FormIntro/>
 
-      <div class="common-fields vue-grid col-2 default-gap">
+      <div class="common-fields vue-ui-grid col-2 default-gap">
         <VueFormField
           :title="i18n('repo-title')"
           :subtitle="i18n('repo-subtitle')"

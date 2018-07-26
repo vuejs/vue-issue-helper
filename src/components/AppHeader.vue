@@ -58,7 +58,7 @@ export default {
     box-sizing border-box
 
   .brand
-    color $vue-color-dark
+    color $vue-ui-color-dark
     .logo
       margin-right 8px
 
