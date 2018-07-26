@@ -26,16 +26,18 @@
         <VueFormField
           :title="i18n('type-title')"
         >
-          <VueSelect
+          <VueGroup
             v-model="type"
+            class="extend"
           >
-            <VueSelectButton
+            <VueGroupButton
               v-for="option of types"
               :key="option.id"
               :value="option.id"
-              :label="option.name"
-            />
-          </VueSelect>
+            >
+              {{ option.name }}
+            </VueGroupButton>
+          </VueGroup>
         </VueFormField>
 
         <VueFormField
