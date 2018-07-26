@@ -216,6 +216,10 @@ export default {
 }
 </script>
 
+<style lang="stylus">
+@import '~@vue/ui/dist/vue-ui.css'
+</style>
+
 <style lang="stylus" scoped>
 @import "../style/imports"
 

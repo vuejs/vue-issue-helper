@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import i18n from './i18n/plugin'
 import VueUi from '@vue/ui'
-import '@vue/ui/dist/vue-ui.css'
 
 import App from './components/App.vue'
 
