@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve --open",
+    "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@vue/ui": "^0.2.8",
+    "@vue/ui": "^0.5.1",
     "axios": "^0.18.0",
     "copy-to-clipboard": "^3.0.8",
     "marked": "^0.4.0",
