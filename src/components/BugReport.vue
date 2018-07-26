@@ -17,7 +17,37 @@
       </VueFormField>
 
       <VueFormField
-        v-if="repo !== 'vuejs/vue-devtools'"
+        v-if="repo === 'vuejs/vue-devtools'"
+        :title="i18n('browser-and-os-title')"
+      >
+        <VueInput
+          v-model="attrs.browserAndOS"
+          required
+        />
+
+        <i18n
+          slot="subtitle"
+          id="browser-and-os-subtitle"
+        />
+      </VueFormField>
+
+      <VueFormField
+        v-else-if="repo === 'vuejs/vue-cli'"
+        :title="i18n('node-and-os-title')"
+      >
+        <VueInput
+          v-model="attrs.nodeAndOS"
+          required
+        />
+
+        <i18n
+          slot="subtitle"
+          id="node-and-os-subtitle"
+        />
+      </VueFormField>
+
+      <VueFormField
+        v-else
         :title="i18n('repro-title')"
       >
         <VueInput
@@ -30,21 +60,6 @@
           slot="subtitle"
           id="repro-subtitle"
           @click-modal="show = true"
-        />
-      </VueFormField>
-
-      <VueFormField
-        v-else
-        :title="i18n('browser-and-os-title')"
-      >
-        <VueInput
-          v-model="attrs.browserAndOS"
-          required
-        />
-
-        <i18n
-          slot="subtitle"
-          id="browser-and-os-subtitle"
         />
       </VueFormField>
 
@@ -126,7 +141,8 @@ export default {
         expected: '',
         actual: '',
         extra: '',
-        browserAndOS: ''
+        browserAndOS: '',
+        nodeAndOS: '',
       },
       versions: [],
       loadingVersion: false,
@@ -178,7 +194,16 @@ export default {
     },
 
     generate () {
-      const { version, reproduction, steps, expected, actual, extra, browserAndOS } = this.attrs
+      const {
+        version,
+        reproduction,
+        steps,
+        expected,
+        actual,
+        extra,
+        browserAndOS,
+        nodeAndOS
+      } = this.attrs
 
       return generate(`
 ### Version
@@ -189,6 +214,9 @@ ${
 [${reproduction}](${reproduction})` : ``}${
   browserAndOS ? `### Browser and OS info
 ${browserAndOS}` : ``
+}${
+  nodeAndOS ? `### Node and OS info
+${nodeAndOS}` : ``
 }
 
 ### Steps to reproduce

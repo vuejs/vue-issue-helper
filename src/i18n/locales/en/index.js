@@ -20,6 +20,9 @@ module.exports = {
   'repro-modal-title': 'About Reproductions',
   'repro-modal': require('./repro-modal.md'),
 
+  'node-and-os-title': 'Node, npm/yarn and OS info',
+  'node-and-os-subtitle': 'Please specify node.js version, npm or yarn version, OS name & version. Example: Node 10.7.0 / yarn 1.7.0 / Windows 10',
+
   'browser-and-os-title': 'Browser and OS info',
   'browser-and-os-subtitle': 'Please specify browser name & version, OS name & version. Example: Chrome 62 / Windows 10',
 
