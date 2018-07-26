@@ -10,6 +10,7 @@
         <VueFormField
           :title="i18n('repo-title')"
           :subtitle="i18n('repo-subtitle')"
+          class="first-row"
         >
           <VueSelect
             v-model="repo"
@@ -25,6 +26,7 @@
 
         <VueFormField
           :title="i18n('type-title')"
+          class="first-row"
         >
           <VueGroup
             v-model="type"
@@ -230,6 +232,9 @@ export default {
   margin 0 auto
   box-sizing border-box
   padding 0 24px
+
+.first-row
+  margin-bottom 24px
 
 .common-fields
   margin-bottom 12px
