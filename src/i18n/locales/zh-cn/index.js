@@ -20,6 +20,9 @@ module.exports = {
   'repro-modal-title': '关于重现',
   'repro-modal': require('./repro-modal.md'),
 
+  'node-and-os-title': 'Node.js、npm/yarn 以及操作系统信息',
+  'node-and-os-subtitle': '请写明 Node.js 版本、npm/yarn 的版本、操作系统的名称以及版本，例如: Node 10.7.0 / yarn 1.7.0 / Windows 10',
+
   'browser-and-os-title': '浏览器和操作系统信息',
   'browser-and-os-subtitle': '请写明浏览器和操作系统的名称/版本，例如: Chrome 62 / Windows 10',
 
