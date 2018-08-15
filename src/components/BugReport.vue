@@ -31,37 +31,41 @@
         />
       </VueFormField>
 
-      <VueFormField
-        v-else-if="repo === 'vuejs/vue-cli'"
-        :title="i18n('node-and-os-title')"
-      >
-        <VueInput
-          v-model="attrs.nodeAndOS"
-          required
-        />
+      <template v-else>
+        <VueFormField
+          v-if="isCLI"
+          :title="i18n('node-and-os-title')"
+        >
+          <VueInput
+            v-model="attrs.nodeAndOS"
+            required
+          />
 
-        <i18n
-          slot="subtitle"
-          id="node-and-os-subtitle"
-        />
-      </VueFormField>
+          <i18n
+            slot="subtitle"
+            id="node-and-os-subtitle"
+          />
+        </VueFormField>
 
-      <VueFormField
-        v-else
-        :title="i18n('repro-title')"
-      >
-        <VueInput
-          type="url"
-          v-model="attrs.reproduction"
-          required
-        />
+        <VueFormField :title="i18n('repro-title')">
+          <VueInput
+            type="url"
+            v-model="attrs.reproduction"
+            :disabled="isCLI && reproNotAvailable"
+            required
+          />
 
-        <i18n
-          slot="subtitle"
-          id="repro-subtitle"
-          @click-modal="show = true"
-        />
-      </VueFormField>
+          <template slot="subtitle">
+            <i18n
+              :id="isCLI ? 'cli-repro-subtitle' : 'repro-subtitle'"
+              @click-modal="show = true"
+            />
+            <VueSwitch v-if="isCLI" v-model="reproNotAvailable">
+              <i18n id="cli-no-repro"/>
+            </VueSwitch>
+          </template>
+        </VueFormField>
+      </template>
 
       <VueFormField
         class="span-2"
@@ -146,6 +150,7 @@ export default {
       },
       versions: [],
       loadingVersion: false,
+      reproNotAvailable: false
     }
   },
 
@@ -155,6 +160,10 @@ export default {
         .slice()
         .sort((a, b) => gt(a.value, b.value) ? -1 : 1)
     },
+
+    isCLI () {
+      return this.repo === 'vuejs/vue-cli'
+    }
   },
 
   watch: {
