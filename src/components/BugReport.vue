@@ -218,15 +218,14 @@ export default {
 ### Version
 ${version}
 
-${
-  reproduction ? `### Reproduction link
-[${reproduction}](${reproduction})` : ``}${
-  browserAndOS ? `### Browser and OS info
-${browserAndOS}` : ``
-}${
-  nodeAndOS ? `### Node and OS info
-${nodeAndOS}` : ``
-}
+${reproduction ? `### Reproduction link
+[${reproduction}](${reproduction})` : ``}
+
+${browserAndOS ? `### Browser and OS info
+${browserAndOS}` : ``}
+
+${nodeAndOS ? `### Node and OS info
+${nodeAndOS}` : ``}
 
 ### Steps to reproduce
 ${steps}
