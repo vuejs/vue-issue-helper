@@ -5,7 +5,7 @@ langContext.keys().forEach(file => {
   const match = file.match(/^\.\/([\w-_$]+)\/index\.js$/)
   if (match) {
     const lang = match[1]
-    locales[lang] = langContext(file)
+    locales[lang] = langContext(file).default
   }
 })
 

@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   _label: '中文',
 
   // intro
