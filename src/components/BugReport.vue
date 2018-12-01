@@ -33,7 +33,7 @@
 
       <template v-else>
         <VueFormField
-          v-if="isCLI"
+          v-if="isCLI && doesNotSupportVueInfo"
           :title="i18n('node-and-os-title')"
         >
           <VueInput
@@ -44,6 +44,23 @@
           <i18n
             slot="subtitle"
             id="node-and-os-subtitle"
+          />
+        </VueFormField>
+
+        <VueFormField
+          v-else-if="isCLI"
+          :title="i18n('cli-envinfo-title')"
+          class="span-2"
+        >
+          <VueInput
+            v-model="attrs.cliEnvInfo"
+            type="textarea"
+            required
+          />
+
+          <i18n
+            slot="subtitle"
+            id="cli-envinfo-subtitle"
           />
         </VueFormField>
 
@@ -129,7 +146,7 @@
 </template>
 
 <script>
-import { gt } from 'semver'
+import { gt, lt } from 'semver'
 import { generate } from '../helpers'
 
 export default {
@@ -147,6 +164,7 @@ export default {
         extra: '',
         browserAndOS: '',
         nodeAndOS: '',
+        cliEnvInfo: '',
       },
       versions: [],
       loadingVersion: false,
@@ -163,6 +181,10 @@ export default {
 
     isCLI () {
       return this.repo === 'vuejs/vue-cli'
+    },
+
+    doesNotSupportVueInfo () {
+      return this.attrs.version && lt(this.attrs.version, '3.2.0')
     }
   },
 
@@ -211,7 +233,8 @@ export default {
         actual,
         extra,
         browserAndOS,
-        nodeAndOS
+        nodeAndOS,
+        cliEnvInfo
       } = this.attrs
 
       return generate(`
@@ -226,6 +249,12 @@ ${browserAndOS}` : ``}
 
 ${nodeAndOS ? `### Node and OS info
 ${nodeAndOS}` : ``}
+
+${cliEnvInfo ? `### Environment info
+\`\`\`
+${cliEnvInfo}
+\`\`\`
+` : ``}
 
 ### Steps to reproduce
 ${steps}

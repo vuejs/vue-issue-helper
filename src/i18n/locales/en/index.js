@@ -25,6 +25,9 @@ export default {
   'node-and-os-title': 'Node, npm/yarn and OS info',
   'node-and-os-subtitle': 'Please specify node.js version, npm or yarn version, OS name & version. Example: Node 10.7.0 / yarn 1.7.0 / Windows 10',
 
+  'cli-envinfo-title': 'Environment Info',
+  'cli-envinfo-subtitle': require('./cli-envinfo-subtitle.md'),
+
   'browser-and-os-title': 'Browser and OS info',
   'browser-and-os-subtitle': 'Please specify browser name & version, OS name & version. Example: Chrome 62 / Windows 10',
 
