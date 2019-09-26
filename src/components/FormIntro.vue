@@ -20,12 +20,20 @@
 </template>
 
 <script>
+import modal from '../mixins/check-modal'
+
 export default {
+  mixins: [modal],
+
   data () {
     return {
-      show: false,
+      show: false
     }
   },
+
+  created () {
+    this.checkModal('why-strict')
+  }
 }
 </script>
 

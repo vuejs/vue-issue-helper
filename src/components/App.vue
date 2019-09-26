@@ -186,10 +186,16 @@ export default {
     repo (value) {
       updateQuery({ repo: value })
     },
+
+    type (value) {
+      updateQuery({ type: value })
+    }
   },
 
   created () {
-    this.repo = getQuery().repo || 'vuejs/vue'
+    const { repo, type } = getQuery()
+    this.repo = repo || 'vuejs/vue'
+    this.type = type || 'bug-report'
   },
 
   methods: {
