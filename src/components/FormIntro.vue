@@ -34,7 +34,7 @@ export default {
   created () {
     this.checkModal('why-strict')
   }
-};
+}
 </script>
 
 <style lang="stylus" scoped>
