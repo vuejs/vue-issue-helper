@@ -148,9 +148,12 @@
 <script>
 import { gt, lt } from 'semver'
 import { generate } from '../helpers'
+import modal from '../mixins/check-modal'
 
 export default {
   props: ['repo'],
+
+  mixins: [modal],
 
   data () {
     return {
@@ -198,6 +201,7 @@ export default {
 
   created () {
     this.fetchVersions()
+    this.checkModal('why-repro')
   },
 
   methods: {

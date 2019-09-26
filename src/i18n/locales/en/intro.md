@@ -1,6 +1,6 @@
 ## Before You Start...
 
-The issue list is reserved exclusively for bug reports and feature requests. That means we do not accept usage questions. If you open an issue that does not conform to the requirements, **it will be closed immediately**.<br>[Why are we so strict about this?](#modal)
+The issue list is reserved exclusively for bug reports and feature requests. That means we do not accept usage questions. If you open an issue that does not conform to the requirements, **it will be closed immediately**.<br>[Why are we so strict about this?](#why-strict)
 
 For usage questions, please use the following resources:
 

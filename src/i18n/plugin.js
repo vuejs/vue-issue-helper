@@ -54,9 +54,9 @@ export default Vue => {
           // make external links open in new tab
           a.setAttribute('target', '_blank')
         } else {
-          // hash link, emit event
+          // hash link, emit event, we've only got modals by far
           a.addEventListener('click', () => {
-            this.$emit(`click-${href.slice(1)}`)
+            this.$emit(`click-modal`)
           })
         }
       }
