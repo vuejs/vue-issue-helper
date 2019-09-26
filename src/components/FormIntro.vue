@@ -25,7 +25,7 @@ import modal from '../mixins/check-modal'
 export default {
   mixins: [modal],
 
-  data() {
+  data () {
     return {
       show: false
     }
