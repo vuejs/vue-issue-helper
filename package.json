@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@vue/ui": "^0.5.2",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "copy-to-clipboard": "^3.0.8",
     "marked": "^0.4.0",
     "qs": "^6.5.2",
