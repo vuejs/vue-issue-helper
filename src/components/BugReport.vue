@@ -231,6 +231,11 @@ export default {
       } else {
         this.loadingVersion = false
       }
+
+      // set current version to the latest
+      if (this.suggestions.length) {
+        this.attrs.version = this.suggestions[0].value
+      }
     },
 
     generate () {
