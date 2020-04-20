@@ -17,7 +17,7 @@
       </VueFormField>
 
       <VueFormField
-        v-if="repo === 'vuejs/vue-devtools'"
+        v-if="repo.id === 'vuejs/vue-devtools'"
         :title="i18n('browser-and-os-title')"
       >
         <VueInput
@@ -74,7 +74,7 @@
 
           <template slot="subtitle">
             <i18n
-              :id="isCLI ? 'cli-repro-subtitle' : 'repro-subtitle'"
+              :id="repo.reproSubtitleId || 'repro-subtitle'"
               @click-modal="show = true"
             />
             <VueSwitch v-if="isCLI" v-model="reproNotAvailable">
@@ -151,7 +151,12 @@ import { generate } from '../helpers'
 import modal from '../mixins/check-modal'
 
 export default {
-  props: ['repo'],
+  props: {
+    repo: {
+      type: Object,
+      required: true
+    }
+  },
 
   mixins: [modal],
 
@@ -183,7 +188,7 @@ export default {
     },
 
     isCLI () {
-      return this.repo === 'vuejs/vue-cli'
+      return this.repo.id === 'vuejs/vue-cli'
     },
 
     doesNotSupportVueInfo () {
@@ -207,11 +212,11 @@ export default {
   methods: {
     async fetchVersions (page = 1) {
       this.loadingVersion = true
-      const repo = this.repo
-      const response = await fetch(`https://api.github.com/repos/${repo}/releases?page=${page}&per_page=100`)
+      const repoId = this.repo.id
+      const response = await fetch(`https://api.github.com/repos/${repoId}/releases?page=${page}&per_page=100`)
       const releases = await response.json()
 
-      if (this.repo !== repo) return
+      if (this.repo.id !== repoId) return
 
       if (!releases || !(releases instanceof Array)) return false
 

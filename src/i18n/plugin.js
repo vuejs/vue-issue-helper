@@ -27,7 +27,12 @@ export default Vue => {
 
   // component for rendering an i18n locale markdown file
   Vue.component('i18n', {
-    props: ['id'],
+    props: {
+      id: {
+        type: String,
+        required: true
+      }
+    },
     render (h) {
       const { $locales, $lang } = this.$root
       const locale = $locales[$lang]
