@@ -18,7 +18,7 @@
             <VueSelectButton
               v-for="option of repos"
               :key="option.id"
-              :value="option.id"
+              :value="option"
               :label="option.name"
             />
           </VueSelect>
@@ -166,7 +166,7 @@ export default {
       },
       show: false,
       preview: false,
-      repo: '',
+      repo: null,
       repos,
       type: 'bug-report',
       versions: {},
@@ -184,7 +184,7 @@ export default {
 
   watch: {
     repo (value) {
-      updateQuery({ repo: value })
+      updateQuery({ repo: value.id })
     },
 
     type (value) {
@@ -194,7 +194,7 @@ export default {
 
   created () {
     const { repo, type } = getQuery()
-    this.repo = repo || 'vuejs/vue'
+    this.repo = this.repos.find(r => r.id === repo) || 'vuejs/vue'
     this.type = type || 'bug-report'
   },
 
@@ -207,7 +207,7 @@ export default {
     findIssues () {
       this.issues = []
       if (this.title) {
-        this.fetchIssues(this.title, { is: 'issue', repo: this.repo })
+        this.fetchIssues(this.title, { is: 'issue', repo: this.repo.id })
       }
     },
 
@@ -220,7 +220,7 @@ export default {
       const title = encodeURIComponent(this.title).replace(/%2B/gi, '+')
       const body = encodeURIComponent(this.generated.markdown).replace(/%2B/gi, '+')
       const label = this.type === 'feature-request' ? '&labels=feature%20request' : ''
-      window.open(`https://github.com/${this.repo}/issues/new?title=${title}&body=${body}${label}`)
+      window.open(`https://github.com/${this.repo.id}/issues/new?title=${title}&body=${body}${label}`)
     },
   },
 }
