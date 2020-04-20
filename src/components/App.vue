@@ -184,7 +184,7 @@ export default {
 
   watch: {
     repo (value) {
-      updateQuery({ repo: value.id })
+      if (value) updateQuery({ repo: value.id })
     },
 
     type (value) {
@@ -194,7 +194,7 @@ export default {
 
   created () {
     const { repo, type } = getQuery()
-    this.repo = this.repos.find(r => r.id === repo) || 'vuejs/vue'
+    this.repo = this.repos.find(r => r.id === repo) || this.repos[0]
     this.type = type || 'bug-report'
   },
 
