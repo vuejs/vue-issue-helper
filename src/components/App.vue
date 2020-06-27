@@ -6,11 +6,11 @@
     <form class="main-form" @submit.prevent="generate">
       <FormIntro/>
 
-      <div class="common-fields vue-ui-grid col-2 default-gap">
+      <div class="common-fields">
         <VueFormField
           :title="i18n('repo-title')"
           :subtitle="i18n('repo-subtitle')"
-          class="first-row"
+          class="first-row can-narrow"
         >
           <VueSelect
             v-model="repo"
@@ -26,7 +26,7 @@
 
         <VueFormField
           :title="i18n('type-title')"
-          class="first-row"
+          class="first-row can-narrow"
         >
           <VueGroup
             v-model="type"
@@ -253,4 +253,30 @@ export default {
 .app-footer
   text-align center
   margin 24px 0
+</style>
+
+<style lang="stylus">
+@media screen and (max-width: 600px)
+  .title
+    font-weight bold
+  .vue-ui-form-field
+    margin-bottom 24px
+
+@media screen and (min-width: 600px)
+  .can-narrow
+    flex: 0 0 48% !important
+
+.common-fields
+  display flex !important
+  flex-flow row wrap
+  justify-content space-between
+
+.vue-ui-form-field
+  margin-bottom 12px
+  width 100%
+
+.medium > .shell
+  width 800px !important
+  min-width auto !important
+  max-width calc(100vw - 40px) !important
 </style>

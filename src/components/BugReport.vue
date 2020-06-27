@@ -1,9 +1,10 @@
 <template>
   <div class="bug-report" style="margin:0">
-    <div class="vue-ui-grid col-2 default-gap">
+    <div class="common-fields">
       <VueFormField
         :title="i18n('version-title')"
         :subtitle="i18n('version-subtitle')"
+        class="can-narrow"
       >
         <VueTypeAhead
           v-model="attrs.version"
@@ -19,6 +20,7 @@
       <VueFormField
         v-if="repo.id === 'vuejs/vue-devtools'"
         :title="i18n('browser-and-os-title')"
+        class="can-narrow"
       >
         <VueInput
           v-model="attrs.browserAndOS"
@@ -35,6 +37,7 @@
         <VueFormField
           v-if="isCLI && doesNotSupportVueInfo"
           :title="i18n('node-and-os-title')"
+          class="can-narrow"
         >
           <VueInput
             v-model="attrs.nodeAndOS"
@@ -50,7 +53,6 @@
         <VueFormField
           v-else-if="isCLI"
           :title="i18n('cli-envinfo-title')"
-          class="span-2"
         >
           <VueInput
             v-model="attrs.cliEnvInfo"
@@ -64,7 +66,7 @@
           />
         </VueFormField>
 
-        <VueFormField :title="i18n('repro-title')">
+        <VueFormField :title="i18n('repro-title')" class="can-narrow">
           <VueInput
             type="url"
             v-model="attrs.reproduction"
@@ -99,6 +101,7 @@
 
       <VueFormField
         :title="i18n('expected-title')"
+        class="can-narrow"
       >
         <VueInput
           type="textarea"
@@ -110,6 +113,7 @@
 
       <VueFormField
         :title="i18n('actual-title')"
+        class="can-narrow"
       >
         <VueInput
           type="textarea"

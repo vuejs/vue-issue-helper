@@ -1,6 +1,6 @@
 <template>
   <div class="feature-request">
-    <div class="vue-ui-grid col-1 default-gap">
+    <div class="common-fields">
       <VueFormField
         :title="i18n('rationale-title')"
       >
