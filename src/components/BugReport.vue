@@ -74,12 +74,15 @@
 
           <template slot="subtitle">
             <i18n
-              :id="repo.reproSubtitleId || 'repro-subtitle'"
-              @click-modal="show = true"
+              :id="repo.reproSubtitleId || 'repro-subtitle-links'"
             />
             <VueSwitch v-if="isCLI" v-model="reproNotAvailable">
               <i18n id="cli-no-repro"/>
             </VueSwitch>
+            <i18n
+              id="repro-subtitle"
+              @click-modal="show = true"
+            />
           </template>
         </VueFormField>
       </template>

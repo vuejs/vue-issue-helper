@@ -17,11 +17,13 @@ export default {
 
   'repro-title': 'Link to minimal reproduction',
   'repro-subtitle': require('./repro-subtitle.md'),
+  'repro-subtitle-links': require('./repro-subtitle-links.md'),
   'repro-modal-title': 'About Reproductions',
   'repro-modal': require('./repro-modal.md'),
-  'cli-repro-subtitle': require('./cli-repro-subtitle.md'),
+  'cli-repro-subtitle-links': require('./cli-repro-subtitle-links.md'),
   'cli-no-repro': 'If your issue cannot be reproduced with code, check here.',
-  'router-next-repro-subtitle': require('./router-next-repro-subtitle.md'),
+  'router-next-repro-subtitle-links': require('./router-next-repro-subtitle-links.md'),
+  'vue-next-repro-subtitle-links': require('./vue-next-repro-subtitle-links.md'),
 
   'node-and-os-title': 'Node, npm/yarn and OS info',
   'node-and-os-subtitle': 'Please specify node.js version, npm or yarn version, OS name & version. Example: Node 10.7.0 / yarn 1.7.0 / Windows 10',

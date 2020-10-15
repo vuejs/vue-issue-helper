@@ -1,0 +1,1 @@
+If the reproduction does not need a build setup, please provide a link to a [JSFiddle](https://jsfiddle.net/posva/km2qpwx7/), [JSBin](https://jsbin.com/) or [CodePen](https://codepen.io). If it requires a build setup, you can use [CodeSandbox](https://codesandbox.io/s/vue-next-s3bf7) or provide a GitHub repo.
