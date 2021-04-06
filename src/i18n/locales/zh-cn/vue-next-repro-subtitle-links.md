@@ -1,1 +1,1 @@
-如果重现不需要构建工具，请提供一个尽可能精简的 [JSFiddle](https://jsfiddle.net/posva/km2qpwx7/), [JSBin](https://jsbin.com/) 或是 [CodePen](https://codepen.io) 链接。如果需要构建工具，可以使用 [CodeSandbox](https://codesandbox.io/s/vue-next-s3bf7) 或是提供一个 GitHub 仓库的链接。
+尽可能使用 [SFC Playground](https://sfc.vuejs.org) 来提供一个复现。如果重现不需要构建工具，请提供一个尽可能精简的 [JSFiddle](https://jsfiddle.net/posva/km2qpwx7/), 或是 [CodePen](https://codepen.io/pen) 链接。如果需要构建工具，可以使用 [CodeSandbox](https://codesandbox.io/s/vue-next-s3bf7) 或是提供一个 GitHub 仓库的链接。
