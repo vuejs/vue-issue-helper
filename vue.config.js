@@ -14,14 +14,5 @@ module.exports = {
       .test(/\.md$/)
         .use('raw-loader')
         .loader('raw-loader')
-
-    config.module.rule('stylus').oneOf('vue').use('postcss-loader')
-      .tap(options =>
-        merge(options, {
-          config: {
-            path: path.resolve(__dirname, '.postcssrc')
-          }
-        })
-      )
   }
 }
