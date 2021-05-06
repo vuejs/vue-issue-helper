@@ -1,11 +1,12 @@
-import Vue from 'vue'
+import { createApp } from 'vue'
 import i18n from './i18n/plugin'
 import VueUi from '@vue/ui'
-
 import App from './components/App.vue'
 
-Vue.use(i18n)
-Vue.use(VueUi)
+const app = createApp(App)
+
+app.use(i18n)
+app.use(VueUi)
 
 window.addEventListener('dragover', e => {
   e.preventDefault()
@@ -13,10 +14,7 @@ window.addEventListener('dragover', e => {
 
 window.addEventListener('drop', e => {
   e.preventDefault()
-  alert(app.i18n('drop-warn'))
+  alert(root.i18n('drop-warn'))
 })
 
-const app = new Vue({
-  el: '#app',
-  ...App
-})
+const root = app.mount('#app')

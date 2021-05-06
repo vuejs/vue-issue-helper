@@ -1,16 +1,23 @@
+import { h, ref } from 'vue'
 import marked from 'marked'
 import locales from './locales/index'
 import qs from 'qs'
 
-export default Vue => {
+export default app => {
   // add locale and lang to root instance.
   // $lang is reactive.
-  Vue.mixin({
-    beforeCreate () {
+  app.mixin({
+    beforeCreate() {
       if (this.$root === this) {
         this.$locales = locales
         const query = qs.parse(window.location.search.slice(1))
-        Vue.util.defineReactive(this, '$lang', query && query.lang || 'en')
+        const lang = ref((query && query.lang) || 'en')
+        Object.defineProperty(this, '$lang', {
+          get: () => lang.value,
+          set: v => {
+            lang.value = v
+          }
+        })
       }
     }
   })
@@ -19,38 +26,39 @@ export default Vue => {
     `[i18n content not found for { lang: "${lang}", id: "${id}" }`
 
   // global i18n method for simple phrases in text interpolations
-  Vue.prototype.i18n = function (id) {
+  app.config.globalProperties.i18n = function(id) {
     const { $locales, $lang } = this.$root
     const locale = $locales[$lang]
     return locale[id] || notFound($lang, id)
   }
 
   // component for rendering an i18n locale markdown file
-  Vue.component('i18n', {
+  app.component('i18n', {
+    compatConfig: {
+      MODE: 3
+    },
     props: {
       id: {
         type: String,
         required: true
       }
     },
-    render (h) {
+    render() {
       const { $locales, $lang } = this.$root
       const locale = $locales[$lang]
       const content = locale[this.id]
       return h('div', {
-        domProps: {
-          innerHTML: content
-            ? marked(content.trim())
-            : `<div style="color:red">${notFound($lang, this.id)}</div>`
-        }
+        innerHTML: content
+          ? marked(content.trim())
+          : `<div style="color:red">${notFound($lang, this.id)}</div>`
       })
     },
     mounted: processLinks,
     updated: processLinks
   })
 
-  function processLinks () {
-    [...this.$el.querySelectorAll('a')].forEach(a => {
+  function processLinks() {
+    ;[...this.$el.querySelectorAll('a')].forEach(a => {
       // avoid interferring with form input tab focus
       a.setAttribute('tabindex', '-1')
       const href = a.getAttribute('href')

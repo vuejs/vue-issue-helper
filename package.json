@@ -14,16 +14,16 @@
     "marked": "^0.4.0",
     "qs": "^6.5.2",
     "semver": "^5.6.0",
-    "vue": "^2.6.12"
+    "vue": "^3.1.0",
+    "@vue/comat": "^3.1.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
-    "deepmerge": "^2.1.1",
     "raw-loader": "^4.0.2",
     "stylus": "^0.54.8",
     "stylus-loader": "^3.0.2",
-    "vue-template-compiler": "^2.6.12"
+    "@vue/compiler-sfc": "^3.1.0"
   },
   "browserslist": [
     "> 1%",

@@ -52,7 +52,7 @@
             autofocus
             @blur="findIssues"
           />
-          <template slot="subtitle">
+          <template #subtitle>
             <div class="similar-issues" v-if="issues.length">
               {{ i18n('similar-issues') }}:
 
@@ -113,13 +113,15 @@
     >
       <div class="default-body" v-html="generated.html"/>
 
-      <div slot="footer" class="actions">
-        <VueButton
-          class="primary big"
-          :label="i18n('create')"
-          @click="create()"
-        />
-      </div>
+      <template #footer>
+        <div class="actions">
+          <VueButton
+            class="primary big"
+            :label="i18n('create')"
+            @click="create()"
+          />
+        </div>
+      </template>
     </VueModal>
   </div>
 

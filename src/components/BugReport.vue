@@ -72,7 +72,7 @@
             required
           />
 
-          <template slot="subtitle">
+          <template #subtitle>
             <i18n
               :id="repo.reproSubtitleId || 'repro-subtitle-links'"
             />
