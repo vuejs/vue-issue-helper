@@ -129,7 +129,7 @@
       Built with
       <a href="https://github.com/vuejs/vue-cli">vue-cli</a>
       &centerdot;
-      Check out source on <a href="https://github.com/vuejs/vue-issue">GitHub</a>
+      Check out source on <a href="https://github.com/vuejs/vue-issue-helper">GitHub</a>
     </small>
   </footer>
 </div>
