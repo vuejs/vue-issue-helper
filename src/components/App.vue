@@ -217,8 +217,8 @@ export default {
     },
 
     create () {
-      const title = encodeURIComponent(this.title).replace(/%2B/gi, '+')
-      const body = encodeURIComponent(this.generated.markdown).replace(/%2B/gi, '+')
+      const title = encodeURIComponent(this.title)
+      const body = encodeURIComponent(this.generated.markdown)
       const label = this.type === 'feature-request' ? '&labels=feature%20request' : ''
       window.open(`https://github.com/${this.repo.id}/issues/new?title=${title}&body=${body}${label}`)
     },
