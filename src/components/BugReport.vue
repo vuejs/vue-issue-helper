@@ -153,6 +153,20 @@ import { gt, lt } from 'semver'
 import { generate } from '../helpers'
 import modal from '../mixins/check-modal'
 
+function getReproLinkTitle(link) {
+  try {
+    const url = new URL(link)
+    return url.href.length < 30
+      ? url.href
+      : url.hostname.length + url.pathname.length < 30
+        ? url.hostname + url.pathname
+        : url.hostname
+  } catch (e) {
+    // return none
+  }
+  return 'None'
+}
+
 export default {
   props: {
     repo: {
@@ -163,7 +177,7 @@ export default {
 
   mixins: [modal],
 
-  data () {
+  data() {
     return {
       show: false,
       attrs: {
@@ -175,7 +189,7 @@ export default {
         extra: '',
         browserAndOS: '',
         nodeAndOS: '',
-        cliEnvInfo: '',
+        cliEnvInfo: ''
       },
       versions: [],
       loadingVersion: false,
@@ -184,48 +198,52 @@ export default {
   },
 
   computed: {
-    suggestions () {
+    suggestions() {
       return this.versions
         .slice()
-        .sort((a, b) => gt(a.value, b.value) ? -1 : 1)
+        .sort((a, b) => (gt(a.value, b.value) ? -1 : 1))
     },
 
-    isCLI () {
+    isCLI() {
       return this.repo.id === 'vuejs/vue-cli'
     },
 
-    doesNotSupportVueInfo () {
+    doesNotSupportVueInfo() {
       return this.attrs.version && lt(this.attrs.version, '3.2.0')
     }
   },
 
   watch: {
-    repo () {
+    repo() {
       this.versions = []
       this.attrs.version = ''
       this.fetchVersions()
     }
   },
 
-  created () {
+  created() {
     this.fetchVersions()
     this.checkModal('why-repro')
   },
 
   methods: {
-    async fetchVersions (page = 1) {
+    async fetchVersions(page = 1) {
       this.loadingVersion = true
       const repoId = this.repo.id
-      const response = await fetch(`https://api.github.com/repos/${repoId}/releases?page=${page}&per_page=100`)
+      const response = await fetch(
+        `https://api.github.com/repos/${repoId}/releases?page=${page}&per_page=100`
+      )
       const releases = await response.json()
 
       if (this.repo.id !== repoId) return
 
       if (!releases || !(releases instanceof Array)) return false
 
-      this.versions = this.versions.concat(releases.map(
-        r => ({ value: /^v/.test(r.tag_name) ? r.tag_name.substr(1) : r.tag_name })
-      ))
+      this.versions = this.versions.concat(
+        releases.map(r => ({
+          value: /^v/.test(r.tag_name) ? r.tag_name.substr(1) : r.tag_name
+        }))
+      )
 
       const link = response.headers.get('Link')
 
@@ -241,7 +259,7 @@ export default {
       }
     },
 
-    generate () {
+    generate() {
       const {
         version,
         reproduction,
@@ -254,24 +272,41 @@ export default {
         cliEnvInfo
       } = this.attrs
 
-      return generate(`
+      return generate(
+        `
 ### Version
 ${version}
 
-${reproduction ? `### Reproduction link
-[${reproduction}](${reproduction})` : ``}
+${
+          reproduction
+            ? `### Reproduction link
+[${getReproLinkTitle(reproduction)}](${reproduction})`
+            : ``
+        }
 
-${browserAndOS ? `### Browser and OS info
-${browserAndOS}` : ``}
+${
+          browserAndOS
+            ? `### Browser and OS info
+${browserAndOS}`
+            : ``
+        }
 
-${nodeAndOS ? `### Node and OS info
-${nodeAndOS}` : ``}
+${
+          nodeAndOS
+            ? `### Node and OS info
+${nodeAndOS}`
+            : ``
+        }
 
-${cliEnvInfo ? `### Environment info
+${
+          cliEnvInfo
+            ? `### Environment info
 \`\`\`
 ${cliEnvInfo}
 \`\`\`
-` : ``}
+`
+            : ``
+        }
 
 ### Steps to reproduce
 ${steps}
@@ -283,8 +318,9 @@ ${expected}
 ${actual}
 
 ${extra ? `---\n${extra}` : ''}
-  `.trim())
+  `.trim()
+      )
     }
-  },
+  }
 }
 </script>
