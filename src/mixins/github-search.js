@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 const API_ENDPOINT = 'https://api.github.com/search/issues'
 
 function toArray(any) {
@@ -20,11 +18,13 @@ export default {
 
   computed: {
     issues: {
-      get () {
+      get() {
         const issues = this.$data._issues
-        return this.showingAllIssues ? issues : issues.slice(0, MAX_SHOWN_ISSUE_COUNT)
+        return this.showingAllIssues
+          ? issues
+          : issues.slice(0, MAX_SHOWN_ISSUE_COUNT)
       },
-      set (issues) {
+      set(issues) {
         this.$data._issues = issues
       }
     },
@@ -33,19 +33,27 @@ export default {
      * Whether to show the "Show more/less" button after the similar issue list.
      * @return {Boolean}
      */
-    showIssueToggleControl () {
+    showIssueToggleControl() {
       return this.$data._issues.length > MAX_SHOWN_ISSUE_COUNT
     }
   },
 
   methods: {
     async fetchIssues(term, filters) {
-      const q = Object.keys(filters).map(
-              key => toArray(filters[key]).map(value => `${key}:${value}`).join(' ')
-          ).join(' ') + ' ' + term
+      const q =
+        Object.keys(filters)
+          .map((key) =>
+            toArray(filters[key])
+              .map((value) => `${key}:${value}`)
+              .join(' ')
+          )
+          .join(' ') +
+        ' ' +
+        term
 
       try {
-        const { items } = await axios.get(API_ENDPOINT, { params: { q } })
+        const res = await fetch(API_ENDPOINT + `?q=${q}`)
+        const { items } = await res.json()
         this.$data._issues = items || []
       } catch (e) {
         // ignore

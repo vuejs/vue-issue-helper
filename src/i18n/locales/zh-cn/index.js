@@ -1,10 +1,17 @@
+const mds = import.meta.globEager('./*.md')
+
+const resolved = {}
+Object.keys(mds).forEach((key) => {
+  resolved[key.replace(/^\.\//, '').replace(/\.md$/, '')] = mds[key].default
+})
+
 export default {
   _label: '中文',
 
+  ...resolved,
+
   // intro
-  'intro': require('./intro.md'),
   'intro-modal-title': '为什么要有这么严格的 issue 规定',
-  'intro-modal': require('./intro-modal.md'),
 
   // bug report
   'repo-title': '相关库',
@@ -16,26 +23,18 @@ export default {
   'version-subtitle': '请检查问题是否存在于 Vue 的最新版本中。',
 
   'repro-title': '重现链接',
-  'repro-subtitle': require('./repro-subtitle.md'),
-  'repro-subtitle-links': require('./repro-subtitle-links.md'),
   'repro-modal-title': '关于重现',
-  'repro-modal': require('./repro-modal.md'),
-  'cli-repro-subtitle-links': require('./cli-repro-subtitle-links.md'),
   'cli-no-repro': '如果你的问题无法用代码重现，点选这里。',
-  'router-next-repro-subtitle-links': require('./router-next-repro-subtitle-links.md'),
-  'vue-next-repro-subtitle-links': require('./vue-next-repro-subtitle-links.md'),
 
   'node-and-os-title': 'Node.js、npm/yarn 以及操作系统信息',
   'node-and-os-subtitle': '请写明 Node.js 版本、npm/yarn 的版本、操作系统的名称以及版本，例如: Node 10.7.0 / yarn 1.7.0 / Windows 10',
 
   'cli-envinfo-title': '环境信息',
-  'cli-envinfo-subtitle': require('./cli-envinfo-subtitle.md'),
 
   'browser-and-os-title': '浏览器和操作系统信息',
   'browser-and-os-subtitle': '请写明浏览器和操作系统的名称/版本，例如: Chrome 62 / Windows 10',
 
   'steps-title': '重现步骤',
-  'steps-subtitle': require('./steps-subtitle.md'),
 
   'expected-title': '期望的结果是什么？',
   'actual-title': '实际的结果是什么？',
@@ -44,10 +43,8 @@ export default {
 
   // feature request
   'rationale-title': '这个功能解决了什么问题？',
-  'rationale-subtitle': require('./rationale-subtitle.md'),
 
   'proposal-title': '你期望的 API 是怎样的？',
-  'proposal-subtitle': require('./proposal-subtitle.md'),
 
   // preview
   'preview': '预览',

@@ -1,12 +1,8 @@
-const langContext = require.context('./', true, /\.js$/)
-const locales = {}
+const locales = import.meta.globEager('./*/index.js')
 
-langContext.keys().forEach(file => {
-  const match = file.match(/^\.\/([\w-_$]+)\/index\.js$/)
-  if (match) {
-    const lang = match[1]
-    locales[lang] = langContext(file).default
-  }
+const exported = {}
+Object.keys(locales).forEach((key) => {
+  exported[key.match(/\/([\w-]+)\//)[1]] = locales[key].default
 })
 
-export default locales
+export default exported
