@@ -1,138 +1,118 @@
 <template>
-<div id="app" class="app">
-  <AppHeader :lang="$lang" @change-lang="setLang"/>
+  <div id="app" class="app">
+    <AppHeader :lang="$lang" @change-lang="setLang" />
 
-  <div class="container">
-    <form class="main-form" @submit.prevent="generate">
-      <FormIntro/>
+    <div class="container">
+      <form class="main-form" @submit.prevent="generate">
+        <FormIntro />
 
-      <div class="common-fields vue-ui-grid col-2 default-gap">
-        <VueFormField
-          :title="i18n('repo-title')"
-          :subtitle="i18n('repo-subtitle')"
-          class="first-row"
-        >
-          <VueSelect
-            v-model="repo"
+        <div class="common-fields vue-ui-grid col-2 default-gap">
+          <VueFormField
+            :title="i18n('repo-title')"
+            :subtitle="i18n('repo-subtitle')"
+            class="first-row"
           >
-            <VueSelectButton
-              v-for="option of repos"
-              :key="option.id"
-              :value="option"
-              :label="option.name"
-            />
-          </VueSelect>
-        </VueFormField>
+            <VueSelect v-model="repo">
+              <VueSelectButton
+                v-for="option of repos"
+                :key="option.id"
+                :value="option"
+                :label="option.name"
+              />
+            </VueSelect>
+          </VueFormField>
 
-        <VueFormField
-          :title="i18n('type-title')"
-          class="first-row"
-        >
-          <VueGroup
-            v-model="type"
-            class="extend"
-          >
-            <VueGroupButton
-              v-for="option of types"
-              :key="option.id"
-              :value="option.id"
-            >
-              {{ option.name }}
-            </VueGroupButton>
-          </VueGroup>
-        </VueFormField>
+          <VueFormField :title="i18n('type-title')" class="first-row">
+            <VueGroup v-model="type" class="extend">
+              <VueGroupButton
+                v-for="option of types"
+                :key="option.id"
+                :value="option.id"
+              >
+                {{ option.name }}
+              </VueGroupButton>
+            </VueGroup>
+          </VueFormField>
 
-        <VueFormField
-          class="span-2"
-          :title="i18n('title-title')"
-        >
-          <VueInput
-            v-model="title"
-            required
-            autofocus
-            @blur="findIssues"
-          />
-          <template slot="subtitle">
-            <div class="similar-issues" v-if="issues.length">
-              {{ i18n('similar-issues') }}:
+          <VueFormField class="span-2" :title="i18n('title-title')">
+            <VueInput v-model="title" required autofocus @blur="findIssues" />
+            <template slot="subtitle">
+              <div class="similar-issues" v-if="issues.length">
+                {{ i18n('similar-issues') }}:
 
-              <ul>
-                <li v-for="issue in issues" :key="issue.id">
-                  <a
-                    class="issue"
-                    :href="issue.html_url"
-                    target="_blank"
-                    rel="noreferrer"
-                    tabindex="-1"
+                <ul>
+                  <li v-for="issue in issues" :key="issue.id">
+                    <a
+                      class="issue"
+                      :href="issue.html_url"
+                      target="_blank"
+                      rel="noreferrer"
+                      tabindex="-1"
+                    >
+                      {{ issue.title }}
+                    </a>
+                  </li>
+                </ul>
+
+                <p v-if="showIssueToggleControl">
+                  <span
+                    v-if="!showingAllIssues"
+                    role="button"
+                    @click="showingAllIssues = true"
                   >
-                    {{ issue.title }}
-                  </a>
-                </li>
-              </ul>
+                    {{ i18n('show-more') }}
+                  </span>
+                  <span v-else role="button" @click="showingAllIssues = false">
+                    {{ i18n('show-less') }}
+                  </span>
+                </p>
+              </div>
+            </template>
+          </VueFormField>
+        </div>
 
-              <p v-if="showIssueToggleControl">
-                <span
-                  v-if="!showingAllIssues"
-                  role="button"
-                  @click="showingAllIssues = true"
-                >
-                  {{ i18n('show-more') }}
-                </span>
-                <span
-                  v-else
-                  role="button"
-                  @click="showingAllIssues = false"
-                >
-                  {{ i18n('show-less') }}
-                </span>
-              </p>
-            </div>
-          </template>
-        </VueFormField>
-      </div>
+        <!-- content component -->
+        <keep-alive>
+          <component :is="type" ref="content" :repo="repo" />
+        </keep-alive>
 
-      <!-- content component -->
-      <keep-alive>
-        <component :is="type" ref="content" :repo="repo"/>
-      </keep-alive>
+        <div class="form-actions">
+          <VueButton
+            type="submit"
+            class="primary big"
+            :label="i18n('preview')"
+          />
+        </div>
+      </form>
 
-      <div class="form-actions">
-        <VueButton
-          type="submit"
-          class="primary big"
-          :label="i18n('preview')"
-        />
-      </div>
-    </form>
+      <VueModal
+        v-if="show"
+        :title="i18n('preview-title')"
+        class="medium"
+        @close="show = false"
+      >
+        <div class="default-body" v-html="generated.html" />
 
-    <VueModal
-      v-if="show"
-      :title="i18n('preview-title')"
-      class="medium"
-      @close="show = false"
-    >
-      <div class="default-body" v-html="generated.html"/>
+        <div slot="footer" class="actions">
+          <VueButton
+            class="primary big"
+            :label="i18n('create')"
+            @click="create()"
+          />
+        </div>
+      </VueModal>
+    </div>
 
-      <div slot="footer" class="actions">
-        <VueButton
-          class="primary big"
-          :label="i18n('create')"
-          @click="create()"
-        />
-      </div>
-    </VueModal>
+    <footer class="app-footer">
+      <p>&hellip;</p>
+      <small>
+        Source on
+        <a target="_blank" href="https://github.com/vuejs/vue-issue-helper"
+          >GitHub</a
+        >
+      </small>
+    </footer>
   </div>
-
-  <footer class="app-footer">
-    <p>&hellip;</p>
-    <small>
-      Built with
-      <a href="https://github.com/vuejs/vue-cli">vue-cli</a>
-      &centerdot;
-      Check out source on <a href="https://github.com/vuejs/vue-issue-helper">GitHub</a>
-    </small>
-  </footer>
-</div>
 </template>
 
 <script lang="babel">
