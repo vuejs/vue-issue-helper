@@ -17,7 +17,7 @@
       </VueFormField>
 
       <VueFormField
-        v-if="repo.id === 'vuejs/vue-devtools'"
+        v-if="repo.id === 'vuejs/devtools'"
         :title="i18n('browser-and-os-title')"
       >
         <VueInput
