@@ -241,7 +241,7 @@ export default {
 
       this.versions = this.versions.concat(
         releases.map(r => ({
-          value: /^v/.test(r.tag_name) ? r.tag_name.substr(1) : r.tag_name
+          value: /^v/.test(r.tag_name) ? r.tag_name.slice(1) : r.tag_name
         }))
       )
 
