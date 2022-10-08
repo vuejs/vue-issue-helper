@@ -12,7 +12,7 @@ const repos = [
   },
   { id: 'vuejs/vue-router', name: 'vue-router (for Vue 2)' },
   { id: 'vuejs/vuex', name: 'vuex' },
-  { id: 'vuejs/devtools', name: 'vue devtools' },
+  // { id: 'vuejs/devtools', name: 'vue devtools' },
   { id: 'vuejs/vue-test-utils', name: 'vue-test-utils (for Vue 2)' },
   {
     id: 'vuejs/vue-cli',
